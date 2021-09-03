@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int strleng(char str[])
+{
+	int count = 0;
+	if (*str != '\0')
+	{
+		count++;
+		return 1 + strleng(str + 1);
+	}
+	else
+		return 0;
+}
+void reserve(char arr[])
+{
+	char tmp = arr[0];
+	int len = strleng(arr);
+	arr[0] = arr[len - 1];
+	arr[len - 1] = '\0';
+	if ((strleng(arr + 1)) >= 2)
+		reserve(arr + 1);
+	arr[len - 1] = tmp;
+}
+int main()
+{
+	char arr[] = "abcdefg";
+	reserve(arr);
+	printf("%s\n", arr);
+	return 0;
+}
