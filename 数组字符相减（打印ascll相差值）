@@ -1,0 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int main()
+{
+	char s1[1024] = { 0 };
+	char s2[1024] = { 0 };
+	int num = 0;
+	int i = 0;
+	scanf("%s", s1);
+	scanf("%s", s2); 
+	int sz = sizeof(s1) / sizeof(s1[0]);
+	while (i <= sz)
+	{
+		num = s1[i] - s2[i];
+		if (num != 0)
+		{
+			printf("%d", num);
+			break;
+		}
+		else
+			i++;
+	}
+	return 0;
+}
