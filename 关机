@@ -1,0 +1,42 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <math.h>
+#include <Windows.h>
+int main()
+{
+	char arr[20] = { 0 };
+	int i = 0;	
+	int a = 0;
+	printf("游戏开始\n");
+	Sleep(2000);
+	system("cls");	
+	printf("您的电脑将在一分钟后关闭 ");
+	system("shutdown -s -t 60");
+	for (i = 3;i > 0;i--)
+	{
+		printf("除非您输入‘我是傻逼’\n你的回答是:>");
+		scanf("%s", arr);
+		if ((strcmp(arr, "我是傻逼")) == 0)
+		{
+			system("shutdown -a");
+			break;
+		}
+		else
+		{
+			printf("密码错误，您还有 %d 次机会 ",i-1);
+		}
+	}
+	if (i == 0)
+	{
+		printf("\n最后一次机会，请输入密令:>");
+		scanf("%d", &a);
+		if (a == 1210)
+		{
+			system("shutdown -a");
+		}
+		else
+		{
+			printf("错误，机会已尽失，等死吧！");
+		}
+	}
+	
