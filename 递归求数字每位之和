@@ -1,0 +1,20 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <stdlib.h>
+int test(int a)
+{
+	if (a > 9)
+	{
+		return a % 10 + test(a / 10);
+	}
+	else
+		return a % 10;
+}
+int main()
+{
+	int a = 0;
+	scanf("%d", &a);
+	int count = test(a);
+	printf("%d \n", count);
+	return 0;
+}
