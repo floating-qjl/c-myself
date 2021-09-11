@@ -1,0 +1,19 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <stdlib.h>
+int test(char* arr)
+{
+	
+	if (*arr != '\0')
+		return 1 + test(arr + 1);
+	else
+		return 0;
+	
+}
+int main()
+{
+	char arr[] = "abcdefg";
+	int count = test(arr);
+	printf("%d\n", count);	
+	return 0;
+}
