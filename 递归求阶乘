@@ -1,0 +1,17 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int test(int n)
+{
+	if(n>0)
+		return n * test(n - 1);	
+}
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	int count = test(n);
+	printf("%d", count);
+	return 0;
+}
