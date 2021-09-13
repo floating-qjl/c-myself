@@ -1,0 +1,21 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int a = 1;
+	int b = 2;
+	int c = 3;
+	double delta = 0;
+	double x1 = 0;
+	double x2 = 0;
+	delta = b * b - 4 * a * c;
+	if (delta >= 0)
+	{
+		x1 = (-b + sqrt(delta) / (2 * a));
+		x2 = (-b - sqrt(delta) / (2 * a));
+		printf("x1 = %lf\nx2 = %lf", x1, x2);
+	}
+	else
+		printf("无解");
+}
