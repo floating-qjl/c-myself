@@ -1,0 +1,13 @@
+#include <stdio.h> 
+int main()
+{
+    int a=0;
+    float b=0;
+    float c=0;
+    float d=0;
+    scanf("%d;%f,%f,%f",&a,&b,&c,&d);
+    //此处不能使用 double，0.005 会四舍五入成 0.01
+    
+    printf("The each subject score of  No. %d is %.2f, %.2f, %.2f.",a,b,c,d);
+    return 0;
+}
