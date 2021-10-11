@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main()
+{
+    int a=0;
+    scanf("%d",&a);
+    printf("year=%d\n",a/10000);
+    a%=10000;
+    printf("month=%02d\n",a/100);
+    printf("date=%02d\n",a%100);
+    return 0;
+}
