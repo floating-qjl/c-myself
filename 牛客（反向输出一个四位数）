@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main()
+{
+    int n=0;
+    scanf("%d",&n);
+    int a=0;
+    for(a=0;a<4;a++)
+    {
+        printf("%d",n%10);
+        n/=10;
+    }
+    return 0;
+}
