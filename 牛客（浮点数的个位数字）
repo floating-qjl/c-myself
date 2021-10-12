@@ -1,0 +1,9 @@
+#include <stdio.h>
+int main()
+{
+    double a=0;
+    scanf("%lf",&a);
+    printf("%.0lf",fmod(a,10.0));
+    //fmod 库函数，返回值为double，参数类型为 double，double，结果为前一个数 % 后一个数
+    return 0;
+}
