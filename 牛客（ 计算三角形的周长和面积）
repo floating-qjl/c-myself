@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main()
+{
+    float a=0;
+    float b=0;
+    float c=0;
+    scanf("%f %f %f",&a,&b,&c);
+    float p=0.5*(a+b+c);
+    float f=sqrt(p*(p-a)*(p-b)*(p-c));
+    printf("circumference=%.2f area=%.2f",(a+b+c),f);
+    return 0;
+}
