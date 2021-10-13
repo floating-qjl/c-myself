@@ -1,0 +1,18 @@
+//从键盘任意输入一个字符，编程判断是否是字母（包括大小写）
+#include <stdio.h>
+
+int main()
+{
+    char a=0;
+    while(scanf("%c",&a)!=EOF)
+    {
+        getchar();
+    if((a>=65&&a<=90)||(a>=97&&a<=122))
+    {
+        printf("YES\n");
+    }
+    else
+        printf("NO\n");
+    }
+    return 0;
+}
