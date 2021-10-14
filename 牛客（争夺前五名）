@@ -1,0 +1,31 @@
+//两行，第一行输入一个整数，表示n个学生（>=5），第二行输入n个学生成绩（整数表示，范围0~100），用空格分隔。
+
+# include <stdio.h>
+  
+int main ()
+{
+    int n, a, i, tmp;
+    int score[100] = {0};
+    scanf("%d\n", &n);
+    for(a=0; a<n; a++)
+    {
+        scanf("%d ", &score[a]);
+    }
+    for(a=0; a<n; a++)
+    {
+        for(i=0; i<n-1-a; i++)
+        {
+            if(score[i]<score[i+1])
+            {
+                tmp = score[i+1];
+                score[i+1] = score[i];
+                score[i] = tmp;
+            }
+        }
+    }
+    for(a=0; a<5; a++)
+    {
+     printf("%d ", score[a]);
+    }
+    return 0;
+}
