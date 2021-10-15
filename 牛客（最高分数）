@@ -1,0 +1,14 @@
+//KiKi参加了语文、数学、外语的考试，请帮他判断三科中的最高分。从键盘任意输入三个整数表示的分数，编程判断其中的最高分。
+
+#include <stdio.h>
+int main()
+{
+    int a,b,c;
+    while(scanf("%d %d %d",&a,&b,&c)!=EOF)
+    {
+        int max=a>b?a:b;
+        printf("%d\n",max>c?max:c);
+    }
+     
+    return 0;
+}
