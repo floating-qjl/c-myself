@@ -1,0 +1,32 @@
+//假设你们社团要竞选社长，有两名候选人分别是A和B，社团每名同学必须并且只能投一票，最终得票多的人为社长.
+#include <stdio.h>
+int main()
+{
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    char arr[100] = { 0 };
+    scanf("%s", arr);
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    for (c = 0;c < sz;c++)
+    {
+        if (arr[c] == 'A')
+        {
+            a++;
+        }
+        else if (arr[c] == 'B')
+        {
+            b++;
+        }
+        else
+            break;
+    }
+
+    if (a > b)
+        printf("A\n");
+    else if (a < b)
+        printf("B\n");
+    else
+        printf("E\n");
+    return 0;
+}
