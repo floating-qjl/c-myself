@@ -1,0 +1,15 @@
+//KiKi想判断输入的字符是不是字母，请帮他编程实现
+
+#include <stdio.h>
+int main()
+{
+    int a=0;
+    while(scanf("%c\n",&a)!=EOF)
+    {
+        if((a>='a'&&a<='z')||(a>='A'&&a<='Z'))
+            printf("%c is an alphabet.\n",a);
+        else
+            printf("%c is not an alphabet.\n",a);
+    }
+    return 0;
+}
