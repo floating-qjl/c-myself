@@ -1,0 +1,18 @@
+//KiKi想知道从键盘输入的两个数的大小关系，请编程实现。
+
+#include <stdio.h>
+
+int main()
+{
+    int a,b;
+    while(scanf("%d %d",&a,&b)!=EOF)
+    {
+        if(a>b)
+            printf("%d>%d\n",a,b);
+        else if(a==b)
+            printf("%d=%d\n",a,b);
+        else
+            printf("%d<%d\n",a,b);
+    }
+    return 0;
+}
