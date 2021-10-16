@@ -1,0 +1,22 @@
+//KiKi学习了循环，BoBo老师给他出了一系列打印图案的练习，该任务是打印用“*”组成的正方形图案
+
+#include <stdio.h>
+
+int main()
+{
+    int a=0;
+    int b=0;
+    int n=0;
+    while(scanf("%d",&n)!=EOF)
+    {
+    for(a=0;a<n;a++)
+    {
+        for(b=0;b<n;b++)
+        {        
+            printf("* ");
+        }
+        printf("\n");
+    }
+    }
+    return 0;
+}
