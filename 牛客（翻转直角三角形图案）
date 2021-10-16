@@ -1,0 +1,24 @@
+//多组输入，一个整数（2~20），表示翻转直角三角形直角边的长度，即“*”的数量，也表示输出行数。
+
+#include <stdio.h>
+
+int main()
+{
+    int a=0;
+    int b=0;
+    int n=0;
+    while(~scanf("%d",&n))
+    {
+        for(a=0;a<n;a++)
+        {
+            for(b=n;b>a;b--)
+            {
+                
+                printf("* ");
+            }
+             printf("\n");
+        }
+       
+    }
+    return 0;
+}
