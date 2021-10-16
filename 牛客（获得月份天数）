@@ -1,0 +1,23 @@
+//KiKi想获得某年某月有多少天，请帮他编程实现。输入年份和月份，计算这一年这个月有多少天。
+
+#include <stdio.h>
+
+int main()
+{
+    int a, b;
+    while (scanf("%d %d", &a, &b) != EOF)
+    {
+        if (b == 1 || b == 3 || b == 5 || b == 7 || b == 8 || b == 10 || b == 12)
+            printf("31\n");
+        else if (b == 4 || b == 6 || b == 9 || b == 11)
+            printf("30\n");
+        else
+        {
+            if ((a % 400 == 0) || (a % 4 == 0 && a % 100 != 0))
+                printf("29\n");
+            else
+                printf("28\n");
+        }
+    }
+    return 0;
+}
