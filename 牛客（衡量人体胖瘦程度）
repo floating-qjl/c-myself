@@ -1,0 +1,22 @@
+//在计算BMI（BodyMassIndex ，身体质量指数）的案例基础上，判断人体胖瘦程度。
+
+#include <stdio.h>
+
+int main()
+{
+    int a,b;
+    while(scanf("%d %d",&a,&b)!=EOF)
+    {
+        double c=a/(b/100.0*b/100.0);
+        if(c>27.9)
+            printf("Obese\n");
+        else if(c>23.9&&c<=27.9)
+            printf("Overweight\n");
+        else if(c>=18.5&&c<=23.9)
+            printf("Normal\n");
+        else
+            printf("Underweight\n");
+        
+    }
+    return 0;
+}
