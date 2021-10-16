@@ -1,0 +1,20 @@
+//KiKi最近学习了信号与系统课程，这门课里有一个非常有趣的函数，单位阶跃函数，其中一种定义方式为：
+//现在试求单位冲激函数在时域t上的值。
+
+#include <stdio.h>
+
+int main()
+{
+    int t=0;
+    
+    while(scanf("%d",&t)!=EOF)
+    {
+    if(t>0)
+        printf("1\n");
+    else if(t==0)
+        printf("0.5\n");
+    else
+        printf("0\n");
+    }
+        return 0;
+}
