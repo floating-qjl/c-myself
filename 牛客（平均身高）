@@ -1,0 +1,13 @@
+//从键盘输入5个人的身高（米），求他们的平均身高（米）
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    double a,b,c,d,e;
+    scanf("%lf %lf %lf %lf %lf",&a,&b,&c,&d,&e);
+    printf("%.2lf",(a+b+c+d+e)/5.0);
+    return 0;
+}
