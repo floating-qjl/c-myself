@@ -1,0 +1,41 @@
+//多组输入，一个整数（3~20），表示输出的行数，也表示组成正方形边的“*”的数量。
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a = 0;
+    while (~scanf("%d", &a))
+    {
+        int b = 0;
+        int c = 0;
+        for (b = 0;b < a;b++)
+        {
+            if (b == 0 || b == a - 1)
+            {
+                for (c = 0;c < a;c++)
+                {
+                    printf("* ");
+                }
+                printf("\n");
+            }
+            else
+            {
+                for (c = 0;c < a;c++)
+                {
+                    if (c == 0 || c == a - 1)
+                    {
+                        printf("* ");
+                    }
+                    else
+                    {                      
+                        printf("  ");                       
+                    }
+                }
+                printf("\n");
+            }
+        }
+    }
+    return 0;
+}
