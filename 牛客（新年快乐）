@@ -1,0 +1,10 @@
+//新年到来，输出信息迎接新年。
+
+
+#include <stdio.h>
+
+int main()
+{
+    printf("Happy New Year*2019*\n");
+    return 0;
+}
