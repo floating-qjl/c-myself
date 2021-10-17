@@ -1,0 +1,27 @@
+//多组输入，一个整数（3~20），表示输出的行数，也表示组成三角形边的“*”的数量。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a = 0;
+    while (~scanf("%d", &a))
+    {
+        int b = 0;
+        int c = 0;
+        for (b = 1;b <= a;b++)
+        {
+            for (c = 1;c <=a ;c++)
+            {
+                if (c == b || b == a || c == 1)
+                    printf("* ");
+                else
+                    printf("  ");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
