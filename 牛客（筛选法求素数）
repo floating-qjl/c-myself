@@ -1,0 +1,36 @@
+//用筛选法求n以内的素数。筛选法求解过程为：将2~n之间的正整数放在数组内存储，
+//将数组中2之后的所有能被2整除的数清0，再将3之后的所有能被3整除的数清0 ，
+//以此类推，直到n为止。数组中不为0 的数即为素数。
+
+
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int a=0;
+    int count = 0;
+    while(~scanf("%d",&a))
+    {
+        int i=0;
+        int j=0;
+        for(i=2;i<=a;i++)
+        {
+            for(j=2;j<=sqrt(i);j+=1)
+            {
+                if(i%j == 0)
+                {
+                    break;
+                }
+            }
+            if(j>sqrt(i))
+            {
+                printf("%d ",i);
+                count++;
+            }
+        }
+        printf("\n");
+        printf("%d",a-count-1);
+    }
+  
+    return 0;
+}
