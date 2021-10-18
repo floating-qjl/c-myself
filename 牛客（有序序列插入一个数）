@@ -1,0 +1,52 @@
+//有一个有序数字序列，从小到大排序，将一个新输入的数插入到序列中，保证插入新数后，序列仍然是升序
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[51] = { 0 };
+    int a = 0;
+    scanf("%d", &a);
+    int b = 0;
+    for (b = 0;b < a;b++)
+    {
+        scanf("%d", &arr[b]);
+    }
+    int c = 0;
+    int d = 0;
+    scanf("%d", &d);
+    for (b = 0;b < a;b++)
+    {
+
+        if (arr[b] <= d && arr[b+1] >= d )
+        {
+            for (c = a;c > b + 1;c--)
+            {
+                arr[c] = arr[c - 1];
+            }
+            arr[b + 1] = d;
+            break;
+        }
+        else if (d >= arr[a - 1])
+        {
+            arr[a] = d;
+            break;
+        }
+        else if(d <= arr[0])
+        {
+            for (c = a;c > 0;c--)
+            {
+                arr[c] = arr[c - 1];
+            }
+            arr[0]=d;
+            break;
+        }
+    }
+    for (b = 0;b <= a;b++)
+    {
+        printf("%d ", arr[b]);
+    }
+    return 0;
+}
