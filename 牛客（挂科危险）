@@ -1,0 +1,17 @@
+//KiKi想知道这学期他的学习情况，BoBo老师告诉他这学期挂的科目累计的学分，根据所挂学分，判断KiKi学习情况，10分以上：很危险(Danger++)，4~9分：危险(Danger)，0~3:Good。
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a=0;
+    scanf("%d",&a);
+    if(a>=10)
+        printf("Danger++\n");
+    else if(a>=4&&a<=9)
+        printf("Danger\n");
+    else
+        printf("Good\n");
+    return 0;
+}
