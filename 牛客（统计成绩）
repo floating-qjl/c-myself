@@ -1,0 +1,30 @@
+//输入n科成绩（浮点数表示），统计其中的最高分，最低分以及平均分。
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    double arr[100] = { 0 };
+    scanf("%d", &a);
+    for (b = 0;b < a;b++)
+    {
+        scanf("%lf", &arr[b]);
+    }
+    double max = 0;
+    double min = 100.0;
+    double sum = 0;
+    for (b = 0;b < a;b++)
+    {
+        if (max < arr[b])
+            max = arr[b];
+        if (min > arr[b])
+            min = arr[b];
+        sum += arr[b];
+    }
+    printf("%.2lf %.2lf %.2lf", max, min, sum / a);
+    return 0;
+}
