@@ -1,0 +1,19 @@
+//有个软件系统登录的用户名和密码为（用户名：admin，密码：admin），用户输入用户名和密码，判断是否登录成功
+
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char ch1[100] = { 0 };
+    char ch2[100] = { 0 };
+    while (~scanf("%s %s", ch1, ch2))
+    {
+        if ((strcmp(ch1, "admin") != 0) || (strcmp(ch2, "admin") != 0))
+            printf("Login Fail!\n");
+        else
+            printf("Login Success!\n");
+        getchar();
+    }
+    return 0;
+}
