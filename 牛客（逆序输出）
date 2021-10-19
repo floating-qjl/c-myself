@@ -1,0 +1,19 @@
+//输入10个整数，要求按输入时的逆序把这10个数打印出来。逆序输出，就是按照输入相反的顺序打印这10个数。
+
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[10]={0};
+    int a;
+    for(a=0;a<10;a++)
+    {
+        scanf("%d",&arr[a]);
+    }
+    for(a=9;a>=0;a--)
+    {
+        printf("%d ",arr[a]);
+    }
+    return 0;
+}
