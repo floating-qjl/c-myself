@@ -1,0 +1,31 @@
+//输入NxM矩阵，矩阵元素均为整数，计算其中大于零的元素之和。
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10]={0};
+    int b=0;
+    int c=0;
+    scanf("%d %d",&b,&c);
+    int j,i;
+    for(j=0;j<b;j++)
+    {
+        for(i=0;i<c;i++)
+        {
+            scanf("%d",&a[j][i]);
+        }
+    }
+    int sum=0;
+    for(j=0;j<b;j++)
+    {
+        for(i=0;i<c;i++)
+        {
+            if(a[j][i]>0)
+                sum+=a[j][i];
+        }
+    }
+    printf("%d\n",sum);
+    return 0;
+}
