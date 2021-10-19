@@ -1,0 +1,18 @@
+//已知一个函数y=f(x)，当x < 0时，y = 1；当x = 0时，y = 0；当x > 0时，y = -1
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a=0;
+    scanf("%d",&a);
+    if(a<0)
+        printf("1\n");
+    else if(a==0)
+        printf("0\n");
+    else
+        printf("-1\n");
+    return 0;
+}
