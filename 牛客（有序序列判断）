@@ -1,0 +1,115 @@
+//第一行输入一个整数N(3≤N≤50)。
+//第二行输入N个整数，用空格分隔N个整数。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a=0;
+    int b=0;
+    int c=0;
+    int d=0;
+    int arr[50]={0};
+    scanf("%d",&a);
+    for(b=0;b<a;b++)
+    {
+        scanf("%d",&arr[b]);
+       
+    }
+    for(b=0;b<a-1;b++)
+    {
+        if(arr[b]<=arr[b+1])
+            c=1;
+        else
+        {
+            c=0;
+            break;
+        }
+    }
+     for(b=0;b<a-1;b++)
+    {
+         if(arr[b]>=arr[b+1])
+            d=1;
+        else        
+        {
+            d=0;
+            break;
+        }
+    }
+    if(c==1||d==1)
+        printf("sorted\n");
+    else
+        printf("unsorted\n");
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int is_sorted(const int* arr, int size)
+{
+    int flag_1 = 1;
+    int flag_2 = 1;
+     
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (arr[i] > arr[i+1])
+        {
+            flag_1 = 0;
+        }
+    }
+     
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (arr[i] < arr[i+1])
+        {
+            flag_2 = 0;
+        }
+    }
+    return (flag_1 || flag_2);
+}
+ 
+int main()
+{
+    int* pArr = NULL;
+    int count = 0;
+    scanf("%d", &count);
+    pArr = malloc(4 * count);
+    for (int i = 0; i < count; i++)
+    {
+        scanf("%d", &pArr[i]);
+    }
+    if (is_sorted(pArr, count))
+    {
+        printf("sorted\n");
+    }
+    else
+    {
+        printf("unsorted\n");
+    }
+     
+    if (pArr != NULL)
+    {
+        free(pArr);
+        pArr = NULL;
+    }
+     
+    return 0;
+}
