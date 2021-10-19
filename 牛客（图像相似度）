@@ -1,0 +1,44 @@
+//第一行包含两个整数m和n，表示图像的行数和列数，用单个空格隔开。1≤m≤100, 1≤n≤100。之后m行，
+//每行n个整数0或1，表示第一幅黑白图像上各像素点的颜色，相邻两个数用单个空格隔开。之后m行，
+//每行n个整数0或1，表示第二幅黑白图像上各像素点的颜色，相邻两个数用单个空格隔开。
+
+
+
+
+
+#include<stdio.h>
+int main()
+{
+    int m, n;
+    int a[100][100], b[100][100];
+    scanf("%d %d", &m, &n);
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &b[i][j]);
+        }
+    }
+    int c = m * n;
+    float k=0, sum;
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (a[i][j]==b[i][j])
+            {
+                k++;
+            }
+        }
+    }
+    sum = (k / c)*100.0;
+    printf("%.2f", sum);
+    return 0;
+}
