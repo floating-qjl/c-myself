@@ -1,0 +1,25 @@
+//输入n个成绩，换行输出n个成绩中最高分数和最低分数的差。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a=0;
+    int b=0;
+    int arr[100]={0};
+    int max=0;
+    int min=100;
+    scanf("%d",&a);
+    for(b=0;b<a;b++)
+    {
+        scanf("%d",&arr[b]);
+        if(arr[b]>max)
+            max=arr[b];
+        if(arr[b]<min)
+            min=arr[b];
+    }
+    printf("%d\n",max-min);
+    return 0;
+}
