@@ -1,0 +1,28 @@
+//有一个整数序列（可能有重复的整数），现删除指定的某一个整数，
+//输出删除指定数字之后的序列，序列中未被删除数字的前后位置没有发生改变。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int arr[50] = { 0 };
+    scanf("%d", &a);
+    for (c = 0;c < a;c++)
+    {
+        scanf("%d", &arr[c]);
+    }
+    scanf("%d", &b);
+    for (c = 0;c < a;c++)
+    {
+        if (arr[c] != b)
+            printf("%d ", arr[c]);
+        else
+            continue;
+    }
+    return 0;
+}
