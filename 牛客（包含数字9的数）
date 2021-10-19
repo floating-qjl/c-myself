@@ -1,0 +1,25 @@
+//今年是2019年，KiKi想知道1~2019中有多少个包含数字9的数。包含数字的数是指有某一位是“9”的数，例如“2019”、“199”等。
+
+
+
+#include <stdio.h>
+int main()
+{
+    int a = 0;
+    int count = 0;
+    for(a=1;a<2020;a++)
+    {
+        int b=a;
+        while(b)
+        {
+            if(b%10==9)
+            {
+                count++;
+                break;
+            }
+            b/=10;
+        }
+    }
+    printf("%d\n",count);
+    return 0;
+}
