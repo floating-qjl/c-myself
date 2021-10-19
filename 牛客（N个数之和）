@@ -1,0 +1,21 @@
+//输入数字N，然后输入N个数，计算这N个数的和。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[50]={0};
+    int a=0;
+    int b=0;
+    int sum=0;
+    scanf("%d",&a);
+    for(b=0;b<a;b++)
+    {
+        scanf("%d",&arr[b]);
+        sum+=arr[b];
+    }
+    printf("%d\n",sum);
+    return 0;
+}
