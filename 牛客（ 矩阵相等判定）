@@ -1,0 +1,41 @@
+//KiKi得到了两个n行m列的矩阵，他想知道两个矩阵是否相等，请你回答他。(当两个矩阵对应数组元素都相等时两个矩阵相等)。
+
+
+
+#include <stdio.h>
+int main()
+{
+    int n, m, a, b, c=0;
+    int arr1[10][10] = { 0 };
+    int arr2[10][10] = { 0 };
+    scanf("%d %d", &n, &m);
+    for (a = 0;a < n;a++)
+    {
+        for (b = 0;b < m;b++)
+        {
+            scanf("%d", &arr1[a][b]);
+        }
+    }
+    for (a = 0;a < n;a++)
+    {
+        for (b = 0;b < m;b++)
+        {
+            scanf("%d", &arr2[a][b]);
+        }
+    }
+    for (a = 0;a < n;a++)
+    {
+        for (b = 0;b < m;b++)
+        {
+            if (arr1[a][b] != arr2[a][b])
+            {
+                c = 1;
+            }
+        }
+    }
+    if (c == 1)
+        printf("No\n");
+    else
+        printf("Yes\n");
+    return 0;
+}
