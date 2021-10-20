@@ -1,0 +1,31 @@
+//KiKi知道什么叫杨辉三角之后对杨辉三角产生了浓厚的兴趣，他想知道杨辉三角的前n行，
+//请编程帮他解答。杨辉三角，本质上是二项式(a+b)的n次方展开后各项的系数排成的三角形。
+//其性质包括：每行的端点数为1， 一个数也为1；每个数等于它左上方和上方的两数之和。
+
+
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int b = 0;
+	int j = 0;
+	int n = 0;
+	int arr[30][30] = { 0 };
+	scanf("%d", &n);
+	for (b = 0;b < n; b++)
+	{
+		for (j = 0;j <= b;j++)
+		{
+			if (j == 0)
+				arr[b][j] = 1;
+			if (b == j)
+				arr[b][j] = 1;
+			if (b >= 2 && j >= 1)
+				arr[b][j] = arr[b - 1][j] + arr[b - 1][j - 1];
+			printf("%5d", arr[b][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
