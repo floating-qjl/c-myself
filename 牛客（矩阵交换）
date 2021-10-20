@@ -1,0 +1,54 @@
+//KiKi有一个矩阵，他想知道经过k次行变换或列变换后得到的矩阵。请编程帮他解答。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int k = 0;
+    char t = 0;
+    int m, n, a, b, c, d;
+    int arr[100][100] = { 0 };
+    scanf("%d %d", &m, &n);
+    for (c = 0;c < m;c++)
+    {
+        for (d = 0;d < n;d++)
+        {
+            scanf("%d", &arr[c][d]);
+        }
+    }
+    scanf("%d", &k);
+    for (c = 0;c < k;c++)
+    {
+        getchar();
+        scanf("%c %d %d", &t, &a, &b);
+        if (t == 'r')
+        {
+            for (d = 0;d < n;d++)
+            {
+                int f = arr[a - 1][d];
+                arr[a - 1][d] = arr[b - 1][d];
+                arr[b - 1][d] = f;
+            }
+        }
+        else if (t == 'c')
+        {
+            for (d = 0;d < m;d++)
+            {
+                int f = arr[d][a - 1];
+                arr[d][a - 1] = arr[d][b - 1];
+                arr[d][b - 1] = f;
+            }
+        }
+    }
+    for (c = 0;c < m;c++)
+    {
+        for (d = 0;d < n;d++)
+        {
+            printf("%d ", arr[c][d]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
