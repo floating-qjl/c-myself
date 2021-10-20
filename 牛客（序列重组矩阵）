@@ -1,0 +1,30 @@
+//KiKi现在得到一个包含n*m个数的整数序列，
+//现在他需要把这n*m个数按顺序规划成一个n行m列的矩阵并输出，请你帮他完成这个任务。
+
+
+
+#include <stdio.h>
+
+
+int main()
+{
+    int a,b,c,d=0;
+    int arr[100][100]={0};
+    scanf("%d %d",&a,&b);
+    for(c=0;c<a;c++)
+    {
+        for(d=0;d<b;d++)
+        {
+        scanf("%d",&arr[c][d]);
+        }
+    }
+    for(c=0;c<a;c++)
+    {
+        for(d=0;d<b;d++)
+        {
+            printf("%d ",arr[c][d]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
