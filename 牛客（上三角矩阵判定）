@@ -1,0 +1,37 @@
+//KiKi想知道一个n阶方矩是否为上三角矩阵，请帮他编程判定。
+//上三角矩阵即主对角线以下的元素都为0的矩阵，主对角线为从矩阵的左上角至右下角的连线。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n=0;
+    int m=0;
+    int a,b;
+    int arr[10][10]={0};
+    scanf("%d",&n);
+    for(a=0;a<n;a++)
+    {
+        for(b=0;b<n;b++)
+        {
+            scanf("%d",&arr[a][b]);
+        }
+    }
+    for(a=1;a<n;a++)
+    {
+        for(b=0;b<a;b++)
+        {
+            if(arr[a][b]!=0)
+            {
+                m=1;
+            }
+        }
+    }
+    if(m)
+        printf("NO\n");
+    else
+        printf("YES\n");
+    return 0;
+}
