@@ -1,0 +1,28 @@
+//KiKi想从n行m列的方阵队列中找到身高最高的人的位置，请你帮助他完成这个任务。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n,m;
+    scanf("%d %d",&n,&m);
+    int arr[10][10]={0};
+    int a,b,c=0,d=0;
+    for(a=0;a<n;a++)
+    {
+        for(b=0;b<m;b++)
+        {
+            scanf("%d",&arr[a][b]);
+            if(arr[c][d]<arr[a][b])
+                {
+                     c=a;
+                     d=b;
+                }
+        }
+    }
+   
+    printf("%d %d\n",c+1,d+1);
+    return 0;
+}
