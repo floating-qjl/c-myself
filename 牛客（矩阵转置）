@@ -1,0 +1,27 @@
+//KiKi有一个矩阵，他想知道转置后的矩阵（将矩阵的行列互换得到的新矩阵称为转置矩阵），请编程帮他解答。
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a, b, c, d;
+    int arr[10][10] = { 0 };
+    scanf("%d %d", &a, &b);
+    for (c = 0;c < a;c++)
+    {
+        for (d = 0;d < b;d++)
+        {
+            scanf("%d", &arr[c][d]);
+        }
+    }
+    for (d = 0;d < b;d++)
+    {
+        for (c = 0;c < a;c++)
+        {
+            printf("%d ", arr[c][d]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
