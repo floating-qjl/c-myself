@@ -15,3 +15,23 @@ int main(){
     m=a>b?a:b;
     printf("%lld\n",m+c/m);
 }
+
+
+
+int main()
+{
+    long long n = 0;
+    long long m = 0;
+    long long tmp = 0;
+     
+    scanf("%lld %lld", &n, &m);
+    int a = n;
+    int b = m;
+    while(tmp=a%b)
+   {
+        a = b;
+        b = tmp;
+   }
+    printf("%lld\n", b+m*n/b);
+    return 0;
+}
