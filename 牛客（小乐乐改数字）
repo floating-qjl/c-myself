@@ -1,0 +1,27 @@
+//小乐乐喜欢数字，尤其喜欢0和1。他现在得到了一个数，想把每位的数变成0或1。
+//如果某一位是奇数，就把它变成1，如果是偶数，那么就把它变成0。请你回答他最后得到的数是多少。
+
+
+
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    long long a=0;
+    scanf("%lld",&a);
+    long long sum=0;
+    int c=0;
+    while(a)
+    {
+        int d=a%10;
+        if(d%2==1)
+            d=1;
+        else
+            d=0;
+        sum+=d*pow(10,c);
+        a/=10;
+        c++;
+    }
+    printf("%lld",sum);
+    return 0;
+}
