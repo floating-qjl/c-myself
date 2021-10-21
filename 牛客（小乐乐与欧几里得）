@@ -1,0 +1,17 @@
+//小乐乐最近在课上学习了如何求两个正整数的最大公约数与最小公倍数，
+//但是他竟然不会求两个正整数的最大公约数与最小公倍数之和，请你帮助他解决这个问题。
+
+
+
+#include <stdio.h>
+int main(){
+    long long a,b,m,n,c;
+    scanf("%lld %lld",&a,&b);
+    c=a*b;
+    while(a&&b){
+        if(a>b) a%=b;
+        else b%=a;
+    }
+    m=a>b?a:b;
+    printf("%lld\n",m+c/m);
+}
