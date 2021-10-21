@@ -1,0 +1,18 @@
+//小乐乐最近接触了求和符号Σ，他想计算的结果。但是小乐乐很笨，请你帮助他解答。
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n=0;
+    scanf("%d",&n);
+    long long sum=0;
+    int a=0;
+    for(a=1;a<=n;a++)
+    {
+        sum+=a;
+    }
+    printf("%lld",sum);
+    return 0;
+}
