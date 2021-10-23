@@ -1,0 +1,25 @@
+//小乐乐学会了自定义函数，BoBo老师给他出了个问题，根据以下公式计算m的值。
+
+//其中 max3函数为计算三个数的最大值，如： max3(1, 2, 3) 返回结果为3。
+
+
+#include <stdio.h>
+int max(int a,int b,int c)
+{
+    if(a>=b&&a>=c)
+        return a;
+    else if(b>=a&&b>=c)
+        return b;
+    else
+        return c;
+}
+int main()
+{
+    int a,b,c;
+    scanf("%d %d %d",&a,&b,&c);
+    double d=max(a+b,b,c);
+    int e=max(a,b+c,c);
+    int f=max(a,b,b+c);
+    printf("%.2lf",d/(e+f));
+    return 0;
+}
