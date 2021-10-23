@@ -1,0 +1,36 @@
+//第一行包含一个整数n，表示一个方阵包含n行n列，用空格分隔。 (2≤n≤10)
+//从2到n+1行，每行输入n个整数（范围-231~231-1），用空格分隔，共输入n*n个数。
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int arr[100][100];
+    int n=0;
+    scanf("%d",&n);
+    int a=0;
+    int b=0;
+    for(a=0;a<n;a++)
+    {
+        for(b=0;b<n;b++)
+        {
+            scanf("%d",&arr[a][b]);
+        }
+    }
+    int c=0;
+    for(a=1;a<n;a++)
+    {
+        for(b=0;b<=a-1;b++)
+        {
+            if(arr[a][b]!=0)
+                c=1;
+        }
+    }
+    if(c==0)
+        printf("YES\n");
+    else
+        printf("NO\n");
+    return 0;
+}
