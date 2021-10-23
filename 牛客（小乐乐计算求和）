@@ -1,0 +1,19 @@
+//小乐乐想计算一下1!+2!+3!+...+n!。
+
+
+
+#include<stdio.h>
+int main()
+{
+    int num;
+    int sum=0;
+    int a=1;
+    scanf("%d",&num);
+    for(int i=1;i<=num;i++)
+    {
+        a=a*i;
+        sum+=a;
+    }
+    printf("%d",sum);
+    return 0;
+}
