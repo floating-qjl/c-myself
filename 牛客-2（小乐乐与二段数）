@@ -1,0 +1,67 @@
+#include <stdio.h>
+       
+const int maxn=10010;
+        
+int a[maxn],b[maxn];
+        
+int m,total,s,t,aptotal,apm,aps,apt,k;
+int n;
+int ck()
+{
+    int p,r;
+    if (total > 5)
+        return 1;
+    p=s;
+    r=t;
+    for(int q=0;q<m;q++)
+    {
+        p=p*10+s;
+    }
+        
+    for (int q = 0; q < total-m; q++)
+        p = p * 10;
+    for (int q = 1; q < total-m; q++)
+        r = r * 10 + t;
+    return p+r>n;
+}
+int main()
+{
+    while(scanf("%d", &n) , n)
+    {
+        printf("%d: ", n);
+        if (n == 1) {
+            printf("10");
+            continue;
+        }
+        a[0]=1;
+        b[0]=1;
+        for(int i=1;i<9999;i++)
+            a[i]=(a[i-1]*10+1)%n;
+        for (int i = 1; i < 999; i++)
+            b[i] = b[i-1]*10%n;
+        for (total = 1, aps = 0; total < 9999; total++) {
+            k = 0;
+            if ((n % 10 == 0 || n % 25 == 0) && total> 11)
+                k = total - 11;
+            for (m = k; m < total; m++)
+                for (s = 1; s < 10; s++)
+                    for (t = 0; t < (n % 10 ? 10 : 1); t++)
+                        if(t!=s&&(((long long)a[m]) * b[total - m] * s + a[total - m - 1] * t) % n == 0 && ck()&&
+                            (!aps||s<aps))
+                        {
+                            aptotal=total;
+                            apm=m;
+                            aps=s;
+                            apt=t;
+                        }
+            if (aps)
+                break;
+        }
+        for (int x = 0; x < apm + 1; x++)
+            printf("%d",aps);
+        for (int x = 0; x < aptotal - apm; x++)
+            printf("%d",apt);
+        printf("\n");
+    }
+    return 0;
+}
