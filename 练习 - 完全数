@@ -1,0 +1,27 @@
+求出1~1000的自然数中所有的完全数，其中完全数是指它所有的真因子（即除了自身以外的约数之和）等于该数本身的数。
+
+
+
+
+
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    for (int a = 1;a <= 1000;a++)
+    {
+        int sum = 0;
+        for (int b = 1;b < a;b++)
+        {
+            if (a % b == 0)
+                sum += b;
+        }
+        if (sum == a)
+            printf("%d ", sum);
+    }
+    return 0;
+}
+         
