@@ -1,0 +1,31 @@
+有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少(按每行输出10个数的格式输出）？
+
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+int main()
+{
+    int count = 0;
+    for (int a = 1;a <= 4;a++)
+    {
+        for (int b = 1;b <= 4;b++)
+        {
+            
+            for (int c = 1;c <= 4;c++)
+            {
+                int d = count;
+                if (a != b && a != c && b != c)
+                {
+                    printf("%d ", a * 100 + b * 10 + c);
+                    count++;
+                }
+                if (count % 10 == 0 && count != 0 && d < count)
+                    printf("\n");
+            }
+        }
+    }
+    printf("\n");
+    printf("一共有：%d个组合", count);
+    return 0;
+}
