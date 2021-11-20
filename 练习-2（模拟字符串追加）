@@ -1,0 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <assert.h>
+
+char* move(char* a, char* b)
+{
+	assert(a && b);
+	char* c = a;
+	while (*a != '\0')
+	{
+		a++;
+	}
+	while (*a++ = *b++);
+	return c;
+	
+}
+int main()
+{
+	char a[30] = "hello ";
+	char b[] = "world";
+	move(a, b);
+	printf("%s\n", a);
+	return 0;
+}
