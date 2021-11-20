@@ -1,0 +1,17 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <assert.h>
+
+int plus(int a)
+{
+	return a <=1 ? 1 : a * plus(a - 1);
+
+}
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	int sum = plus(n);
+	printf("%d的阶乘为%d\n", n, sum);
+	return 0;
+}
