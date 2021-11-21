@@ -1,0 +1,18 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+int main()
+{
+
+	int n = 0;
+	int sum = 0;
+	int c = 1;
+	scanf("%d", &n);
+	for (int b = 1;b <= n;b++)
+	{
+		c = c * b;
+		sum += c;
+	}
+	printf("%d", sum);
+	return 0;
+}
