@@ -1,0 +1,35 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int a = 0;
+	int b = 0;
+	int arr[10][10] = { 0 };
+	for (a = 0;a < 10;a++)
+	{
+		for (b = 0;b <=a;b++)
+		{
+			if (a == b)
+			{
+				arr[a][b] = 1;
+			}
+			arr[a][0] = 1;
+			if (a >= 2 && b >= 1)
+			{
+				arr[a][b] = arr[a - 1][b] + arr[a - 1][b - 1];
+			}
+		}
+	}
+	for (a = 0;a < 10;a++)
+	{
+		for (b = 0;b < 9 - a;b++)
+			printf("  ");
+		for (b = 0;b <= a;b++)
+		{
+			printf("%-3d ", arr[a][b]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
