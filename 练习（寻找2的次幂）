@@ -1,0 +1,23 @@
+数学上把2的K次方叫2的K次幂，如4、8、32等。给定一个整数n，
+请输出距离它最近的那个2的幂是多少。如果有两个距离相同，输出那个小的。
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    long a;
+    int c = 0;
+    scanf("%ld", &a);
+    long b = a;
+    while (b/=2)   
+        c++;   
+    if (a - pow(2, c) < pow(2, c + 1) - a)
+        printf("%.0lf", pow(2, c));
+    else
+        printf("%.0lf", pow(2, c + 1));
+    return 0;
+}
