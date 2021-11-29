@@ -1,0 +1,39 @@
+输入一个英文句子，例如：“This is a Book."，可以看到句子是以“.”来作为结束符号的
+，并且单词之间以一个空格来分隔。接着再输入一个单词A，请找出首次在句子中出现的与A相同的单词，是句子中的第几个单词，
+若不存在，则输出该句子中单词字符的总个数。 例如对上句子而言，若输入单词“is”，则应输出：2 若输入单词“isa”，则应输出：11
+
+
+
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char a[100];
+    gets(a);
+    char b[10];
+    gets(b);
+    int c = 0;
+    char* pa = a;
+    while (*a != '\0')
+    {
+        char* pb = b;
+        while (*pa == *pb)
+        {
+            pa++;
+            pb++;
+        }
+        if (*pb == '\0')
+        {
+            c++;
+            break;
+        }
+        while (*pa++ != ' ');
+            c++;
+    }
+    printf("%d", c);
+    return 0;
+}
