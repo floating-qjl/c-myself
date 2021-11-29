@@ -1,0 +1,60 @@
+画图形，是我们需要研究的一个重要课程。菱形好似练的差不多了啊。那么，什么东西，
+能够有些新意呢？弄个漂亮点的图形吧，空心六边形进入了我们的视线。那么我们就打印一个正六边型吧。
+根据输入的边长，输出对应大小的正六边型。
+
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int n = 0;
+    scanf("%d", &n);
+    int a;
+    int b;
+    for (a = 0;a < n;a++)
+    {
+        for (b = 0;b < n - 1 - a;b++)
+        {
+            printf(" ");
+        }
+        if (a == 0)
+        {
+            for (b = 0;b < n;b++)
+                printf("*");
+            printf("\n");
+            continue;
+        }
+        else
+            printf("*");
+        for (b = 0;b < n + 2 * (a-1);b++)
+        {
+            printf(" ");
+        }
+        printf("*\n");
+
+    }
+    for (a = 0;a < n - 1;a++)
+    {
+        for (b = 0;b <= a;b++)
+        {
+            printf(" ");
+        }
+        if (a == n - 2)
+        {
+            for (b = 0;b < n;b++)
+                printf("*");
+            continue;
+        }
+        else
+            printf("*");
+        for (b = 0;b < n + 2 * (n - 3 - a);b++)
+        {
+            printf(" ");
+        }
+        printf("*\n");
+    }
+    return 0;
+}
