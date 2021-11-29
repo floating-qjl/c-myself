@@ -1,0 +1,32 @@
+从键盘输入整数L，统计出边长为整数，周长为L的不等边三角形的个数
+
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    int a;
+    int num = 0;
+    scanf("%d", &a);
+    for (int b = a/3;b < a/2.0;b++)
+    {
+        for (int c = a/10;c <=b;c++)
+        {
+            int d = a - b - c;
+            if (d > c || d > b)
+                continue;
+            if (d + b + c == a && b + c > d && b + d > c && c + d > b)
+                num++;
+        }
+    }
+    if (a % 3 == 0)
+        printf("%d", num - 1);
+    else
+        printf("%d", num);
+    return 0;
+}
