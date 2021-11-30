@@ -1,0 +1,36 @@
+输入n个不超过30000的整数（n≤10）。然后求出每个数的数字和，再按每个数的数字和由小到大排列输出。
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int arr[11] = { 0 };
+	int ch[40] = { 0 };
+	int a = 0;
+	for (a = 0;a < n;a++)
+	{
+		scanf("%d", &arr[a]);
+	}
+	int* p = arr;
+	while (*p != '\0')
+	{
+		int b = *p++;
+		int sum = 0;
+		while (b)
+		{
+			sum += b % 10;
+			b /= 10;
+		}
+		ch[sum] = sum;
+	}
+	for(a=0;a<40;a++)
+	{
+		if (ch[a] != 0)
+			printf("%d ", ch[a]);
+	}
+	return 0;
+}
