@@ -1,0 +1,37 @@
+放暑假了，陈谱想上网下载一些电影看，但是缓慢的网速令他无法忍受。
+他了解到了接下来的N个小时中的网速情况，想找一段连续的M个小时来下载电影，
+并且希望这M个小时的平均网速尽可能的大，你能编一个程序帮助他实现愿望吗？
+
+输入格式
+输入 第一行包含两个整数N、M，1<=M<=N<=100； 第二行包含N个整数，表示第N个小时的网速。相邻两数之间用空格隔开。
+
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int N;
+	double M;
+	scanf("%d %lf", &N, &M);
+	int arr[100] = { 0 };
+	int a = 0;
+	for (;a < N;a++)
+	{
+		scanf("%d", &arr[a]);
+	}
+	double max = 0;
+	for (a = 0;a <= N - M;a++)
+	{
+		int sum = 0;
+		for (int b = 0;b < M;b++)
+		{
+			sum += arr[a + b];
+		}
+		if (max < sum / M)
+			max = sum / M;
+	}
+	printf("%.2lf", max);
+	return 0;
+}
