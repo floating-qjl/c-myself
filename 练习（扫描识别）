@@ -1,0 +1,47 @@
+ 1、把数字0错误地识别为大写字母O； 2、把数字1错误地识别为小写字母l； 3、把数字2错误地识别为大写字母Z；
+ 4、把数字5错误地识别为大写字母S； 5、把数字6错误地识别为小写字母b；
+ 6、把数字8错误地识别为大写字母B； 7、把数字9错误地识别为小写字母q。 你的改正方案是：
+ 如果字符串中出现了上述字母，请替换为原来的数字。最后把改正之后的数字串输出。
+
+
+
+
+
+
+#include <stdio.h>
+char change(char a)
+{
+	switch (a)
+	{
+	case 'O':
+		return '0';
+	case 'l':
+		return '1';
+	case 'Z':
+		return '2';
+	case 'S':
+		return '5';
+	case 'b':
+		return '6';
+	case 'B':
+		return '8';
+	case 'q':
+		return '9';
+	}
+	return a;
+}
+
+int main()
+{
+	char arr[101] = { 0 };
+	gets(arr);
+	char *p = arr;
+	while (*p != '\0')
+	{
+		*p = change(*p);
+		p++;
+	}
+	puts(arr);
+
+	return 0;
+}
