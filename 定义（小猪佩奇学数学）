@@ -1,0 +1,32 @@
+花了一个多月的时间，佩奇终于学会了比较两个数的大小。她想检测下自己是否已经真的学会了，
+找来了乔治考考他。乔治马上写出了n个数，要佩奇数出每个数后面比他小的数的总个数，
+佩奇马上开始数了起来。乔治自己也在旁边算，可他发现自己也还不太清楚，
+但又不想在佩奇面前丢脸，所以来求助你，希望你能够在佩奇面前算出标准答案。
+
+
+
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	int* arr = (int*)malloc(n * sizeof(int));
+	int a = 0;
+	for (;a < n;a++)
+		scanf("%d", &arr[a]);
+	int count = 0;
+	for (a = 0;a < n;a++)
+	{
+		for (int b = a;b < n;b++)
+		{
+			if (arr[a] > arr[b])
+				count++;
+		}
+	}
+	printf("%d", count);
+	return 0;
+}
