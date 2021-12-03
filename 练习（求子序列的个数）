@@ -1,0 +1,46 @@
+给定一串整数数列，求出所有的递增和递减子序列的数目。如数列7，2，6，9，8，3，5，2，1可分为（7，2），
+（2，6，9），（9，8，3），（3，5），（5，2，1）5个子序列，答案就是5。我们称2，9，3，5为转折元素。
+
+
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int* arr = (int*)malloc(n * 4);
+	for (int a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	int count = 0;
+	int num = 0;
+	while (num<=n-1)
+	{
+		int a = 0;
+		while (arr[num] <= arr[num + 1])
+		{
+			num++;
+			a = 1;
+		}
+		if (a == 1)
+		{
+			count++;
+			a = 0;
+		}
+		if (num >= n-1)
+			break;
+		while (arr[num] >= arr[num + 1])
+		{
+			num++;
+			a = 1;
+		}
+		if (a == 1)
+			count++;
+	}
+	printf("%d", count);
+	return 0;
+}
+
