@@ -1,0 +1,40 @@
+请问n个一位数能够组成的最大的整数是多少。
+比如，n=3，3个整数为1、3、9，那么组成的最大整数是931。
+比如，n=4，4个整数为2、8、0、6，那么组成的最大整数是8620。
+
+
+
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int* arr = (int*)malloc(n * 4);
+	for (int a = 0;a < n;a++)
+	{
+		scanf("%d", &arr[a]);
+	}
+	for (int a = 0;a < n-1;a++)
+	{
+		for (int b = 0;b < n - 1 - a;b++)
+		{
+			if (arr[b] > arr[b + 1])
+			{
+				int c = arr[b];
+				arr[b] = arr[b + 1];
+				arr[b + 1] = c;
+			}
+		}
+	}
+	int sum = 0;
+	for (int a = 0;a < n;a++)
+	{
+		sum += arr[n-1-a] * pow(10, n - 1 - a);
+	}
+	printf("%d", sum);
+	return 0;
+}
