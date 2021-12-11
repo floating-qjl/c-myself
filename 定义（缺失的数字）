@@ -1,0 +1,28 @@
+有n个数字，值就是1~n，现发现丢失了2个数字，请你根据剩余的n-2个数字，编程计算一下，缺失的是哪两个数字呢？
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int* arr = (int*)malloc((n-2) * 4);
+	int ch[100000] = { 0 };
+	for (int a = 0;a < n - 2;a++)
+	{
+		scanf("%d", &arr[a]);
+		ch[arr[a] - 1] = arr[a];
+	}
+	for (int a = 0;a < n;a++)
+	{
+		if (ch[a] == 0)
+			printf("%d ", a + 1);
+	}
+	free(arr);
+	arr = NULL;
+	return 0;
+}
