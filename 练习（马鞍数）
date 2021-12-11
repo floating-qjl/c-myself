@@ -1,0 +1,128 @@
+求一个n×m数阵中的马鞍数，输出它的位置。所谓马鞍数，是指在行上最小而在列上最大的数。
+如下： n=5 m=5
+5 6 7 8 9
+4 5 6 7 8
+3 4 5 2 1
+2 3 4 9 0
+1 2 5 4 8
+则1行1列上的数就是马鞍数。
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int arr[10][10] = { 0 };
+	int a = 0;
+	int b = 0;
+	int ch1[10][10] = { 0 };
+	int ch2[10][10] = { 0 };
+	for (a = 0;a < n;a++)
+	{
+		int min = 100;
+		for (b = 0;b < m;b++)
+		{
+			scanf("%d", &arr[a][b]);
+			if (min > arr[a][b])
+				min = arr[a][b];
+		}
+		for (b = 0;b < m;b++)
+		{
+			if (arr[a][b] == min)
+			    ch1[a][b] = 1;
+		}
+	}
+	for (b = 0;b < m;b++)
+	{
+		int max = 0;
+		for (a = 0;a < n;a++)
+		{
+			if (max < arr[a][b])
+				max = arr[a][b];
+		}
+		for (a = 0;a < n;a++)
+		{
+			if (arr[a][b] == max)
+				ch2[a][b] = 1;
+		}
+	}
+	int d = 1;
+	for (a = 0;a < n;a++)
+	{
+		for (b = 0;b < m;b++)
+		{
+			if (ch1[a][b] == 1 && ch2[a][b] == 1)
+			{
+				printf("%d %d %d\n", a + 1, b + 1, arr[a][b]);
+				d = 0;
+			}
+		}
+	}
+	if (d)
+		printf("not exist");
+	return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int arr[10][10] = { 0 };
+	int a = 0;
+	int b = 0;
+	int ch1[10][10] = { 0 };
+	int ch2[10][10] = { 0 };
+	for (a = 0;a < n;a++)
+	{
+		int min = 100;
+		for (b = 0;b < m;b++)
+		{
+			scanf("%d", &arr[a][b]);
+			if (min > arr[a][b])
+				min = arr[a][b];
+		}
+		for (b = 0;b < m;b++)
+		{
+			if (arr[a][b] == min)
+			    ch1[a][b] = 1;
+		}
+	}
+	for (b = 0;b < m;b++)
+	{
+		int max = 0;
+		for (a = 0;a < n;a++)
+		{
+			if (max < arr[a][b])
+				max = arr[a][b];
+		}
+		for (a = 0;a < n;a++)
+		{
+			if (arr[a][b] == max)
+				ch2[a][b] = 1;
+		}
+	}
+	int d = 1;
+	for (a = 0;a < n;a++)
+	{
+		for (b = 0;b < m;b++)
+		{
+			if (ch1[a][b] == 1 && ch2[a][b] == 1)
+			{
+				printf("%d %d %d\n", a + 1, b + 1, arr[a][b]);
+				d = 0;
+			}
+		}
+	}
+	if (d)
+		printf("not exist");
+	return 0;
+}
