@@ -26,5 +26,7 @@ int main()
 		i = i ^ arr[a];
 	}
 	printf("%d", i);
+	free(arr);
+	arr=NULL;
 	return 0;
 }
