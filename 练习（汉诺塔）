@@ -1,0 +1,46 @@
+后来，这个传说就演变为汉诺塔游戏:
+
+1.有三根杆子A,B,C。A杆上有若干碟子
+
+2.每次移动一块碟子,小的只能叠在大的上面
+
+3.把所有碟子从A杆全部移到C杆上
+
+经过研究发现，汉诺塔的破解很简单，就是按照移动规则向一个方向移动金片：　　如3阶汉诺塔的移动：A→C,A→B,C→B,A→C,B→A,B→C,A→C 　　此外，汉诺塔问题也是程序设计中的经典递归问题。
+
+算法思路：
+
+1.如果只有一个金片，则把该金片从源移动到目标棒，结束。
+
+2.如果有n个金片，则把前n-1个金片移动到辅助的棒，然后把自己移动到目标棒，最后再把前n-1个移动到目标棒.
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+void test(int n,char a, char b, char c)
+{
+    if (n == 1)
+        printf("%c To %c\n", a, c);
+    else
+    {
+        test(n - 1, a, c, b);
+        printf("%c To %c\n", a, c);
+        test(n - 1, b, a, c);
+    }
+}
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    char a = 'A';
+    char b = 'B';
+    char c = 'C';
+    test(n,a, b, c);
+    return 0;
+}
