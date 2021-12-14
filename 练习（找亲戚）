@@ -1,0 +1,31 @@
+数字王国中，数字们也有亲戚关系。有一个1位数x，他想找到自己的亲戚，他是这样判断对方是不是自己的亲戚的，
+如果对方的那个数的各个位中含有和自己一样的数，就认为对方是自己的亲戚。比如：3和635就算亲戚，因为635中有数字3。
+请从键盘读入一个一位的整数x，找出从m~n中有多少个数是x的亲戚。
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int x;
+    scanf("%d", &x);
+    int m, n;
+    scanf("%d %d", &m, &n);
+    int num = 0;
+    for (int a = m;a <= n;a++)
+    {
+        int b = a;
+        while (b)
+        {
+            int c = b % 10;
+            if (c == x)
+            {
+                num++;
+                break;
+            }
+            b /= 10;
+        }
+    }
+    printf("%d", num);
+    return 0;
+}
