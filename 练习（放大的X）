@@ -1,0 +1,46 @@
+你编程画一个放大的’X’（大写字母）。 如3*3的’X’应如下所示：
+
+
+
+5*5的’X’如下所示：
+
+X   X
+ X X
+  X
+ X X
+X   X
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	for (int a = 0;a < n / 2 + 1;a++)
+	{
+		if (a == n / 2 && n % 2 == 0)
+			continue;
+		for (int b = 0;b < a;b++)
+			printf(" ");
+		printf("X");
+		for (int b = n - 2 - 2 * a;b > 0;b--)
+			printf(" ");
+		if (a != n / 2 )
+			printf("X\n");
+		else
+			printf("\n");
+	}
+	for (int a = 0;a < n / 2;a++)
+	{
+		for (int b = n / 2;b > a + 1;b--)
+			printf(" ");
+		printf("X");
+		for (int b = 0;b < n % 2 + 2 * a;b++)
+			printf(" ");
+		printf("X\n");
+	}
+	return 0;
+}
