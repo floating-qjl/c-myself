@@ -1,0 +1,66 @@
+在漆黑的夜里，N位旅行者来到了一座狭窄而且没有护栏的桥边。如果不借助手电筒的话，大家是无论如何也不敢过桥去的。
+不幸的是，N个人一共只带了一只手电筒，而桥窄得只够让两个人同时过。
+
+如果各自单独过桥的话，N人所需要的时间已知；而如果两人同时过桥，所需要的时间就是走得比较慢的那个人单独行动时所需的时间。
+
+问题是，如何设计一个方案，让这N人尽快过桥，计算成绩这N个人的最短过桥时间。
+
+比如：有四个人甲乙丙丁，他们过河需要的时间分别为，甲：1  乙：2  丙：5  丁：10
+第一种办法：最快的2个人先过桥，然后让跑的最快的人来回去接剩下的人：
+先让甲乙过去（2分钟），甲回来（1分钟），甲丙过去（5分钟），甲回来（1分钟），甲丁再过去（10分钟），总共需要19分钟就可以让四个人都过去。
+第二种办法：让最慢的地2个人一起过桥，减少最慢的人在桥上的次数
+先让甲乙过去（2分钟），甲回来（1分钟），丙丁过去（10分钟），乙回来（2分钟），甲乙再过去（2分钟），总共需要17分钟可以让四个人都过去。
+那么最慢的时间就是需要17分钟！
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int mysort_1(int* arr, int n)
+{
+	int sum = 0;
+	for (int a = 1;a < n;a++)
+	{
+		sum += arr[a] + 1;
+	}
+	return sum - 1;
+}
+int mysort_2(int* arr, int n)
+{
+	int* p = arr + n - 1;
+	int sum = 0;
+	for (;p >= arr + 2;p -= 2)
+	{
+		sum += 2 * arr[1] + arr[0] + *p;
+	}
+	if (n % 2 == 0)
+		return sum + arr[1];
+	else
+		return sum - arr[1];
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int* arr = (int*)malloc(n * 4);
+	for (int a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	qsort(arr, n, 4, test);
+	int sum1 = mysort_1(arr, n);
+	int sum2 = mysort_2(arr, n);
+	if (sum1 < sum2)
+		printf("%d", sum1);
+	else
+		printf("%d", sum2);
+	return 0;
+}
