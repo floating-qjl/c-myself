@@ -1,0 +1,47 @@
+有n个人排队到r个水龙头去打水，他们装满水桶的时间t1,t2,...,tn为整数且各不相等，应如何安排他们的打水顺序才能使他们花费的总时间最少？
+
+每个人打水的时间 = 排队的时间 + 实际打水的时间，本题假设一个人打好水，排在他后面的人接着打水的这个切换过程不消耗时间。
+
+比如，有2个人A和B，他们打水的时间分别是3和2，只有1个水龙头，这时，如果A先打水，B后打水，那么A和B打水的时间分别为3、3+2（B排队3分钟）。
+
+因此，所有人打水的总时间就是每个人的打水时间及每个人的排队时间的总和。
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int n, r;
+	scanf("%d %d", &n, &r);
+	int* arr = (int*)calloc(n + 1, 4);
+	for (int a = 0;a < n;a++)
+	{
+		scanf("%d", &arr[a]);
+	}
+	qsort(arr, n, 4, test);
+	int sum = 0;
+	int* p = arr;
+	int* ch = (int*)calloc(r, 4);
+	for (int a = 0;a < n / r + 1;a++)
+	{
+		if (n % 2 == 0 && (a == n / r))
+			break;
+		for (int b = 0;b < r;b++)
+		{
+			if (*p == 0)
+				break;
+			ch[b] = ch[b] + *p;
+			sum += ch[b];
+			p++;
+		}
+	}
+	printf("%d", sum);
+	return 0;
+}
