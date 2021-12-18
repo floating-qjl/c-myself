@@ -1,0 +1,44 @@
+给定一个长度为N(0< n< =10000)的序列，保证每一个序列中的数字a[i]是正整数  ，
+编程要求求出整个序列中第k大的数字减去第k小的数字的值m，并判断m是否为质数。(0< k< =n)
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int n = 0;
+	int k = 0;
+	int m = 0;
+	int a = 0;
+	scanf("%d %d", &n, &k);
+	int* arr = (int*)malloc(n * 4);
+	for (a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	qsort(arr, n, 4, test);
+	m = arr[n - k] - arr[k - 1];
+	for (a = 2;a <= sqrt(m);a++)
+	{
+		if (m % a == 0)
+			break;
+	}
+	if (a > sqrt(m))
+		printf("YES\n%d", m);
+	else
+		printf("NO\n%d", m);
+	return 0;
+}
