@@ -1,0 +1,41 @@
+
+编一个“念数字”的程序。当你输入一个0-99之间的数后，计算机就会用汉语拼音输出这个数的“念”法。
+
+比如：35，念出来应该是：san shi wu；16念出来应该是shi liu，0念出来应该是ling！
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main()
+{
+	char arr[11][5] = { "ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
+	int n;
+	scanf("%d", &n);
+	int a = 0;
+	int b = 0;
+	int c = n;
+	if (c && c >= 10)
+	{
+		b = c % 10;
+		c /= 10;
+		a = c;
+		if (n % 10 != 0 && n > 20)
+			printf("%s shi %s", arr[a], arr[b]);
+		else if (n % 10 == 0)
+			printf("%s shi", arr[a]);
+		else
+			printf("shi %s", arr[b]);
+	}
+	else 
+		printf("%s", arr[n]);
+
+	return 0;
+}
