@@ -40,3 +40,111 @@ int main()
     free(H);
     return 0;
 }
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int test(const void* e1, const void* e2)
+{
+	return *(char*)e1 - *(char*)e2;
+}
+int main()
+{
+	int n, m;
+	scanf("%d %d", &n, &m);
+	char arr1[31];
+	char arr2[31];
+	char arr3[31] = { 0 };
+	scanf("%s", arr1);
+	scanf("%s", arr2);
+	qsort(arr2, m, 1, test);
+	char* ch1 = arr1;
+	char* ch2 = arr2;
+	while (*ch2 != '\0')
+	{
+		if (*ch2 <= 'Z')
+			ch2++;
+		else
+			break;
+	}
+	char* ch = ch2;
+	ch2 = arr2;
+	int num = 0;
+	while (*ch2 <='Z' || *ch != '\0')
+	{
+		if (*ch2 + 32 <= *ch && *ch != '\0')
+		{
+			arr3[num] = *ch2;
+			num++;
+			ch2++;
+		}
+		else if(*ch2 + 32 > *ch && *ch!='\0')
+		{
+			arr3[num] = *ch;
+			num++;
+			ch++;
+		}
+		if (*ch == '\0' && *ch2 <= 'Z')
+		{
+			arr3[num] = *ch2;
+			num++;
+			ch2++;
+		}
+	}
+	char* ch3 = arr3;
+	if (!(*ch3))
+		ch3 = arr2;
+
+	while (*ch1 != '\0' && *ch3 != '\0')
+	{
+		if ((*ch1 > 'Z' && *ch3 > 'Z') || (*ch1 <= 'Z' && *ch3 <= 'Z'))
+		{
+			if (*ch1 < *ch3)
+			{
+				printf("%c", *ch1);
+				ch1++;
+			}
+			else
+			{
+				printf("%c", *ch3);
+				ch3++;
+			}
+		}
+		if (*ch1 <= 'Z' && *ch3 > 'Z' && *ch1 != '\0' && *ch3 != '\0')
+		{
+			if (*ch1 + 32 <= *ch3)
+			{
+				printf("%c", *ch1);
+				ch1++;
+			}
+			else if (*ch1 + 32 > *ch3)
+			{
+				printf("%c", *ch3);
+				ch3++;
+			}
+		}
+		if (*ch1 > 'Z' && *ch3 <= 'Z' && *ch1 != '\0' && *ch3 != '\0')
+		{
+			if (*ch1 < *ch3 + 32)
+			{
+				printf("%c", *ch1);
+				ch1++;
+			}
+			else if (*ch1 >= *ch3 + 32)
+			{
+				printf("%c", *ch3);
+				ch3++;
+			}
+		}
+	}
+	if (*ch1 == '\0' && *ch3 != '\0')
+		printf("%s", ch3);
+	if (*ch3 == '\0' && *ch1 != '\0')
+		printf("%s", ch1);
+	return 0;
+}
