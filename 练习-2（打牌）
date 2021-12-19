@@ -1,0 +1,42 @@
+小明现在有n张卡牌，小红现在有m张卡牌，小明的卡牌是按从小到大顺序存放的，而小红的卡牌是不规则的（无序），现在他们两个好朋友想打出从小到大顺序的卡牌。
+分别输入两个整数N和M， 再输入N张卡牌和M张卡牌，表示每个人手上的卡牌，（卡牌均为大小写英文字母）。
+（1<=N<=M<=30）
+
+
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+_Bool cmp(char a,char b){
+    if(a==b+32||a==b-32)
+        return b>a;
+    if(a>=97)
+        a-=32;
+    if(b>=97)
+        b-=32;
+    return b>a;
+}
+int main()
+{
+    int n,m;
+    scanf("%d%d",&n,&m);
+    char *M=(char*)calloc(n+m+1,sizeof(char));
+    char *H=(char*)calloc(m+1,sizeof(char));
+    scanf("%s",M);
+    scanf("%s",H);
+    strcat(M,H);
+    for(int i=n,j;i<m+n;i++){
+        char key=M[i];
+        for(j=i-1;j>=0&&cmp(key,M[j]);j--){
+            M[j+1]=M[j];
+        }
+        M[j+1]=key;
+    }
+    printf("%s",M);
+    free(M);
+    free(H);
+    return 0;
+}
