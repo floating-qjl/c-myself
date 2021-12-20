@@ -1,0 +1,49 @@
+小明学习了等差数列和等比数列的知识。
+
+等差数列是指从第二项起，每一项与它的前一项的差都是相等的。比如数列：1 3 5 7 9和数列：9 7 5 3 1都是等差数列。
+
+等比数列是指从第二项起，每一项与它的前一项的比值都是相等的。比如数列：1 2 4 8 16和数列：16 8 4 2 1都是等比数列。
+
+现从键盘读入n个整数，判断是等差数列还是等比数列，如果是等差数列，请输出“dengcha”，如果是等比数列，请输出“dengbi”，如果两种数列都不是，请输出“no”。
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int n, a, b;
+	scanf("%d", &n);
+	int* arr = (int*)malloc(4 * n);
+	for ( a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	int d = arr[1] - arr[0];
+	double q = arr[1] / arr[0] ;
+	for (a = 1;a < n ;a++)
+	{
+		if (arr[a] - arr[a - 1] != d)
+			break;
+	}
+	for (b = 1;b < n ;b++)
+	{
+		if (arr[a - 1] * q != arr[a])
+			break;
+	}
+	if (a == n)
+		printf("dengcha");
+	else if (b == n)
+		printf("dengbi");
+	else
+		printf("no");
+	return 0;
+}
