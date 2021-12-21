@@ -1,0 +1,21 @@
+将n拆成a+b的形式，比如：10=2+8，请注意10=8+2此处认为和10=2+8是同一个方案。
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	for (int a = 0, b = n;a <= n / 2 && b >= n / 2;a++, b--)
+	{
+		if (a + b == n)
+			printf("%d=%d+%d\n", n, a, b);
+	}
+	return 0;
+}
