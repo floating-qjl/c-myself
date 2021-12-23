@@ -1,0 +1,39 @@
+地上有一排西瓜，每个西瓜都有自己的重量。淘淘有一个包，包的容量是固定的，
+淘淘希望尽可能在包里装更多的西瓜（当然要装整个的，不能切开装），请问淘淘的包最多能装下多少个西瓜？
+
+
+
+
+
+
+
+
+
+
+
+
+
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int* arr = (int*)malloc(4 * n);
+	for (int a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	qsort(arr, n, 4, test);
+	int num = 0;
+	for (int a = 0;a < n && m>0;a++)
+	{
+		if (arr[a] <= m)
+		{
+			m -= arr[a];
+			num++;
+		}
+	}
+	printf("%d", num);
+	return 0;
+}
