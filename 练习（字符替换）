@@ -1,0 +1,35 @@
+
+把一个字符串中特定的字符全部用给定的字符替换，得到一个新的字符串。
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	char arr[100] = { 0 };
+	char a, b;
+	scanf("%s", arr);
+	getchar();
+	scanf("%c", &a);
+	getchar();
+	scanf("%c", &b);
+	int c = strlen(arr);
+	for (int d = 0;d < c;d++)
+	{
+		if (arr[d] == a)
+			arr[d] = b;
+	}
+	printf("%s", arr);
+	return 0;
+}
