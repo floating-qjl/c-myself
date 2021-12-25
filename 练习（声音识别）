@@ -1,0 +1,64 @@
+学校王老师研发了一套新的声音识别系统，该系统预先将每位同学的学号和声音录入之后，
+只要同学一说话，就知道是哪个学号的同学在说话（不同的同学声音是完全不一样的）。
+王老师将系统装在了教室，系统收集到了一节英语课中同学们说话的n个片段，并转换为了同学们的学号，
+请你编程帮助王老师计算出，有多少个同学在英语课中发过言，并按照学号由小到大，输出每位同学的学号及该学号的同学发言的次数。
+比如，假设经过系统分析，得到如下的8个同学的学号分别是：8 1 6 1 8 6 7 2，表示同学们的发言顺序分别是：
+8号、1号、6号、1号、8号、6号、7号、2号，那么一共有5位同学发过言，按照学号由小到大输出发言次数如下：
+1 2
+2 1
+6 2
+7 1
+8 2
+分别代表1号同学发言2次、2号同学发言1次、6号同学发言2次、7号同学发言1次、8号同学发言2次。
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int* arr = (int*)malloc(n * 4);
+	for (int a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	qsort(arr, n, 4, test);
+	int num = 0;
+	int* p = arr;
+	while (p < arr + n)
+	{
+		if (*p == *(p + 1))
+		{
+			p++;
+			continue;
+		}
+		else
+		{
+			num++;
+			p++;
+		}
+	}
+	printf("%d\n", num);
+	p = arr;
+	for (int a = 0;a < n;)
+	{
+		int b = *p;
+		int count = 0;
+		while(arr[a] == b)
+		{
+			count++;
+			a++;
+		}
+		printf("%d %d\n", arr[a - 1], count);
+		p += count;
+	}
+	return 0;
+}
