@@ -1,0 +1,39 @@
+Julius Caesar曾经使用过一种很简单的密码。对于明文中的每个字符，将它用它字母表中后5位对应的字符来代替，
+这样就得到了密文。比如字符A用F来代替。如下是密文和明文中字符的对应关系。
+密文：A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+明文：V W X Y Z A B C D E F G H I J K L M N O P Q R S T U
+你的任务是对给定的密文进行解密得到明文。
+你需要注意的是，密文中出现的字母都是大写字母。密文中也包括非字母的字符，对这些字符不用进行解码。
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main()
+{
+	char arr[201] = { 0 };
+	char ch[201] = { 0 };
+	gets(arr);
+	char* pa = arr;
+	int num = 0;
+	for (;pa <arr + strlen(arr);pa++,num++)
+	{
+		if (*pa >= 'F' && *pa <= 'Z')
+			ch[num] = *pa - 5;
+		else if (*pa >= 'A' && *pa < 'F')
+			ch[num] = *pa + 21;
+		else
+			ch[num] = *pa;
+	}
+	printf("%s", ch);
+	return 0;
+}
