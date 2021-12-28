@@ -1,0 +1,29 @@
+ 求这样的四个自然数p,q,r,s(p<=q<=r<=s)，使得以下等式成立：1/p+1/q+1/r+1/s=1，请输出所有满足条件的不重复的解。
+ 
+ 
+ 
+ 
+ 
+ 
+ #include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	double sum = 0;
+	for (int p = 2;p <= 4;p++)
+	{
+		for (int q = p;q <= 6 && q >= p;q++)
+		{
+			for (int r = q;r <= 12 && r >= q;r++)
+			{
+				for (int s = r;s <= 42 && s >= r;s++)
+				{
+					if (q * r * s + p * r * s + p * q * s + p * q * r == p * q * r * s)
+						printf("%d %d %d %d\n", p, q, r, s);
+				}
+			}
+		}
+	}
+	return 0;
+}
