@@ -1,0 +1,36 @@
+小明很喜欢玩积木。一天，他把许多积木块组成了好多高度不同的堆，每一堆都是一个摞一个的形式。然而此时，
+他又想把这些积木堆变成高度相同的。但是他很懒，他想移动最少的积木块来实现这一目标，你能帮助他吗？ 
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int n;
+	while (~scanf("%d", &n) && n != 0)
+	{
+		int* arr = (int*)malloc(n * 4);
+		int sum = 0;
+		for (int a = 0;a < n;a++)
+		{
+			scanf("%d", &arr[a]);
+			sum += arr[a];
+		}
+		int avg = sum / n;
+		sum = 0;
+		for (int a = 0;a < n;a++)
+			if (arr[a] > avg)
+				sum += arr[a] - avg;
+		printf("%d\n", sum);
+	}
+	return 0;
+}
