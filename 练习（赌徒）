@@ -1,0 +1,42 @@
+有n个赌徒打算赌一局有n个赌徒打算赌一局。规则是： 每人下一个赌注，赌注为非负整数，且任意两个赌注都不相同。
+胜者为赌注恰好是其余任意三个人的赌注之和的那个人。如果有多个胜者，我们取赌注最大的那个为最终胜者。 
+例如，A，B，C，D，E分别下赌注为2、3、5、7、12，最终胜者是E，因为12=2+3+7。。规则是： 每人下一个赌注，赌注为非负整数，
+且任意两个赌注都不相同。胜者为赌注恰好是其余任意三个人的赌注之和的那个人。如果有多个胜者，我们取赌注最大的那个为最终胜者。
+例如，A，B，C，D，E分别下赌注为2、3、5、7、12，最终胜者是E，因为12=2+3+7。
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct stu 
+{
+	int price;
+	int num;
+};
+int test(const void* e1, const void* e2)
+{
+	return ((struct stu*)e1)->price - ((struct stu*)e2)->price;
+}
+int main()
+{
+	int n, m;
+	scanf("%d%d", &n, &m);
+	struct stu* hh = (struct stu*)malloc(m * 8);
+	for (int a = 0;a < m;a++)
+		scanf("%d%d", &(hh[a].price), &(hh[a].num));
+	qsort(hh, m, 8, test);
+	int sum = 0;
+	for (int a = 0;a < m;a++)
+	{
+		for (int b = 0;b < hh[a].num;b++)
+		{
+			n -= 1;
+			sum += hh[a].price;
+			if (n == 0)
+			{
+				printf("%d", sum);
+				return 0;
+			}
+		}
+	}
+	return 0;
+}
