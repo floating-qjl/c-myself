@@ -1,0 +1,40 @@
+某城市最高的建筑只有一部电梯。一份电梯升降任务表由N个正整数组成，这些数字表示电梯按照给定的顺序停留的楼层号。 
+电梯升一层花费6秒钟，降一层花费4秒钟，并且每次停留花费5秒钟。 对于每一份任务表，你要计算出完成全部升降任务所花费的总时间
+一开始，电梯在第0层，并且最终完成任务时电梯不必一定返回到0层。
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int n;
+	while(~scanf("%d",&n)&&n!=0)
+	{ 
+		int* arr = (int*)malloc(n * 4);
+		for (int a = 0;a < n;a++)
+			scanf("%d", &arr[a]);
+		int ini = 0;
+		int time = 0;
+		for (int a = 0;a < n;a++)
+		{
+			int count = arr[a] - ini;
+			if (count > 0)
+				time += count * 6 + 5;
+			else
+				time += (-count) * 4 + 5;
+			ini = arr[a];
+		}
+		printf("%d\n", time);
+	}
+	return 0;
+}
