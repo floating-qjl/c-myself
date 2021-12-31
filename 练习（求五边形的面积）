@@ -1,0 +1,43 @@
+各条边长数据如下：
+
+   AB = 52.1
+
+   BC = 57.2
+
+   CD = 43.5
+
+   DE = 51.9
+
+   EA = 33.4
+
+   EB = 68.2
+
+   EC = 71.9
+
+   根据这些数据求五边形地块的面积并输出。四舍五入到小数后两位。
+   
+   
+   
+   
+   #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main()
+{
+	double a = 52.1;
+	double b = 33.4;
+	double c = 68.2;
+	double d = 57.2;
+	double e = 71.9;
+	double f = 51.9;
+	double g = 43.5;
+	double p1 = (a + b + c) / 2;
+	double p2 = (c + d + e) / 2;
+	double p3 = (e + f + g) / 2;
+	double s1 = sqrt(p1 * (p1 - a) * (p1 - b) * (p1 - c));
+	double s2 = sqrt(p2 * (p2 - c) * (p2 - d) * (p2 - e));
+	double s3 = sqrt(p3 * (p3 - e) * (p3 - f) * (p3 - g));
+	double sum = s1 + s2 + s3;
+	printf("%.2lf", sum);
+	return 0; 
+}
