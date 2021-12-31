@@ -1,0 +1,27 @@
+有一张披萨在砧板上，披萨不能够离开砧板，请问切N刀最多能分成多少块？
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int n;
+	while (~scanf("%d", &n) && n != 0)
+	{
+		int ini = 2;
+		for (int a = 2;a <= n;a++)
+		{
+			ini += a;
+		}
+		printf("%d\n", ini);
+	}
+	return 0;
+}
