@@ -1,0 +1,36 @@
+现给定一串数N，求出连续的数相加的最大值，例如：1 6 9 -5 4，连续数的最大和就是1+6+9=16；6 -3 4 0 
+
+-1，连续数的最大和是6+（-3）+4=7；
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int n;
+	while (~scanf("%d", &n))
+	{
+		int* arr = (int*)malloc(4 * n);
+		for (int a = 0;a < n;a++)
+			scanf("%d", &arr[a]);
+		int sum = 0;
+		int max = 0;
+		for (int a = 0;a < n;a++)
+		{
+			sum = 0;
+			for (int b = a;b < n;b++)
+			{
+				sum += arr[b];
+				if (sum > max)
+					max = sum;
+			}
+		}
+		printf("%d\n", max);
+	}
+	return 0;
+}
