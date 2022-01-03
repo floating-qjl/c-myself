@@ -1,0 +1,46 @@
+  给定某整数数组和某一整数b。要求删除数组中可以被b整除的所有元素，同时将该数组各元素按从小到大排序。
+  如果数组元素数值在A到Z的ASCII之间，替换为对应字母。元素个数不超过100，b在1至100之间。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int n, b;
+	scanf("%d%d", &n, &b);
+	int* arr = (int*)malloc(n * 4);
+	for (int a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	qsort(arr, n, 4, test);
+	for (int a = 0;a < n;a++)
+	{
+		if (arr[a] % b == 0)
+			arr[a] = 0;
+	}
+	for (int a = 0;a < n;a++)
+	{
+		if (arr[a] != 0)
+		{
+			if (arr[a] >= 65 && arr[a] <= 90)
+				printf("%c ", arr[a]);
+			else
+				printf("%d ", arr[a]);
+		}
+	}
+	return 0;
+}
