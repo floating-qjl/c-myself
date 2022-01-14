@@ -1,0 +1,33 @@
+输入N个无序的数，请将相同的数删成只剩下一个，并将删除后的数列从小到大排序后输出。
+（如输入：8 32 12 25 12 8 36 25 26 12 ，输出：8 12 25 26 32 36）
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int* arr = (int*)calloc(n, 4);
+	for (int a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	qsort(arr, n, 4, test);
+	int* pa = arr;
+	printf("%d ", *pa++);
+	for (;pa <= arr + n - 1;pa++)
+	{
+		if (*pa == *(pa - 1))
+			continue;
+		else
+			printf("%d ", *pa);
+	}
+	free(arr);
+	arr = NULL;
+	return 0;
+}
