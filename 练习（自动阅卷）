@@ -1,0 +1,47 @@
+王老师布置了n道“100以内数的加减法”加减计算题，请小明同学完成。
+
+小明完成后，王老师请你编程帮助他实现自动阅卷。
+
+小明完成后的作业题有n行，每道题目（包括答案）的格式为a+b=c或者a-b=c，其中a和b是作业中给出的，
+均为不超过100的非负整数；c是小明同学算出的答案，可能是不超过200的非负整数，也可能是单个字符"?"，表示他不会算。
+
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int count = 0;
+	while (n--)
+	{
+		int a, b, e = 0;
+		int num = 0;
+		char d = 0;
+		char c[4] = { 0 };
+		scanf("%d%c%d=%s", &a, &d, &b, c);
+		char* pc = c;
+		if (*pc == '?')
+			continue;
+		while (*pc != '\0')
+		{
+			e = *pc - 48 + e * 10;
+			pc++;
+		}
+		switch (d)
+		{
+		case '+':
+			num = a + b;
+			break;
+		case '-':
+			num = a - b;
+			break;
+		}
+		if (num == e)
+			count++;
+	}
+	printf("%d", count);
+	return 0;
+}
