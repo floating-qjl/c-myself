@@ -1,0 +1,53 @@
+输入n输出1..n个数的全部排列。全部排列中，数字可以重复 。
+
+例如输入3，输出全部排列的结果如下111、112、113、121、122、123、131、132、133、211、212、213、221、222、223、231、232、233、311、312、313、321、322、323、331、332、333。
+
+输入格式
+
+
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	for (int a = 1;a <= n;a++)
+	{
+		if (n > 1)
+			for (int b = 1;b <= n;b++)
+			{
+				if (n > 2)
+					for (int c = 1;c <= n;c++)
+					{
+						if (n > 3)
+							for (int d = 1;d <= n;d++)
+							{
+								if (n > 4)
+									for (int e = 1;e <= n;e++)
+									{
+										if (n > 5)
+											for (int f = 1;f <= n;f++)
+											{
+												printf("%d%d%d%d%d%d\n", a, b, c, d, e, f);
+											}
+										else
+											printf("%d%d%d%d%d\n", a, b, c, d, e);
+									}
+								else
+									printf("%d%d%d%d\n", a, b, c, d);
+							}
+						else
+							printf("%d%d%d\n", a, b, c);
+					}
+				else
+					printf("%d%d\n", a, b);
+			}
+		else
+			printf("%d\n", a);
+	}
+	return 0;
+}
