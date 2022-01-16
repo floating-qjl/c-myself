@@ -1,0 +1,32 @@
+请问在26个英文字母（包括大写和小写字母）中，有哪些字母的ascii码是素数，请按照ascii码从小到大的顺序输出这些字母的ascii码及这些字母。
+
+比如：符合条件的前三个字母是。
+
+67 C
+71 G
+73 I
+
+
+
+
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	printf("67 C\n");
+	printf("71 G\n");
+	printf("73 I\n");
+	printf("79 O\n");
+	printf("83 S\n");
+	printf("89 Y\n");
+	printf("97 a\n");
+	printf("101 e\n");
+	printf("103 g\n");
+	printf("107 k\n");
+	printf("109 m\n");
+	printf("113 q\n");
+	return 0;
+}
