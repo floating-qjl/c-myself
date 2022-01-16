@@ -1,0 +1,47 @@
+小丽同学在编程中学到了二进制数的概念，她发现，有些二进制数，如果转为10进制，就是素数，
+小丽把这些数称为潜在的素数；比如2进制1101011，转为10进制后为107，就是素数。请编程帮小丽找出，
+哪些二进制数转为10进制后，是素数，计算出这样的数有多少个？
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+int test(int a)
+{
+	int b;
+	if (a == 2)
+		return 1;
+	for (b = 2;b <= sqrt(a);b++)
+	{
+		if (a % b == 0)
+			return 0;
+	}
+	if (b > sqrt(a))
+		return 1;
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int count = 0;
+	for (int a = 0;a < n;a++)
+	{
+		int sum = 0;
+		char arr[31] = { 0 };
+		scanf("%s", arr);
+		int num = strlen(arr);
+		char* pa = arr + num - 1;
+		for (int b = 0;b < num;b++,pa--)
+		{
+			if (*pa == '1')
+				sum += pow(2, b);
+		}
+		int c = test(sum);
+		if (c)
+			count++;
+	}
+	printf("%d", count);
+	return 0;
+}
