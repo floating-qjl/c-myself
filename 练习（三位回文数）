@@ -1,0 +1,28 @@
+请从小到大输出m~n之间所有的3位的回文数，并求出这些数有多少个。
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int m, n;
+	scanf("%d%d", &m, &n);
+	int count = 0;
+	for (int a = m; a <= n;a++)
+	{
+		int b = (a % 10) * 100 + ((a / 10) % 10) * 10 + (a / 100);
+		if (b == a)
+		{
+			printf("%d\n", a);
+			count++;
+		}
+	}
+	printf("%d", count);
+	return 0;
+}
