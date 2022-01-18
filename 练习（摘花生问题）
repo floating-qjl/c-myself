@@ -1,0 +1,37 @@
+Hello Kitty 想摘点花生送给她喜欢的米老鼠。她来到一片有网格状道路的矩形花生地(如下图)，
+从西北角进去，东南角出来。地里每个道路的交叉点上都有种着一株花生苗，上面有若干颗花生，
+经过一株花生苗就能摘走该它上面所有的花生。Hello Kitty只能向东或向南走，不能向西或向北走。问Hello Kitty 最多能够摘到多少颗花生。 
+
+
+
+
+#include <stdio.h>
+int arr[100][100] = { 0 };
+int max(int a, int b)
+{
+	if (a >= b)
+		return a;
+	else
+		return b;
+}
+int test(int m, int n, int LL, int RR)
+{
+	if (m == LL && n == RR)
+		return arr[LL][RR];
+	if (m > LL || n > RR)
+		return 0;
+	return arr[m][n] + max(test(m + 1, n, LL, RR), test(m, n + 1, LL, RR));
+}
+int main()
+{
+	int m, n;
+	scanf("%d%d", &m, &n);
+	for (int a = 0;a < m;a++)
+	{
+		for (int b = 0;b < n;b++)
+			scanf("%d", &arr[a][b]);
+	}
+	int count = test(0, 0, m-1, n-1);
+	printf("%d", count);
+	return 0;
+}
