@@ -1,0 +1,36 @@
+同构数是这样一种数：它出现在它的平方数的右端。例如：5的平方是25，5就是同构数，25的平方是625，25也是同构数。
+
+再比如：100以内的同构数有1 5 6 25 76这5个整数。
+
+请编程计算出1~N之间（包括N）的全部同构数有多少个？
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int count = 0;
+	for (int a = 1;a <= n;a++)
+	{
+		int num = 0;
+		int b = pow(a, 2);
+		int c = a;
+		while (c)
+		{
+			num++;
+			c /= 10;
+		}
+		int d = b % (int)(pow(10, num));
+		if (d == a)
+			count++;
+	}
+	printf("%d", count);
+	return 0;
+}
