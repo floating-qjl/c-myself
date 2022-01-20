@@ -1,0 +1,82 @@
+桐桐把合数483的各位数字相加(4+8+3)=15，再将483分解成质因数相乘：483=3*7*23，把这些质因数各位数字相加(3+7+2+3)，
+其和也为15。即某合数的各位数字之和等于它所有质因数的各数字之和。你帮助桐桐把n以内(包括n)具有上述特点的所有合数找出来好吗?
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+int test(int n)
+{
+	int a = 0;
+	if (n == 2)
+		return 1;
+	for (int a = 2;a <= sqrt(n);a++)
+	{
+		if (n % a == 0)
+			return 0;
+	}
+	if (a > sqrt(a))
+		return 1;
+}
+int test2(int m)
+{
+	int num = 0;
+	int tip = 0;
+	int a = 0;
+	for (int c = 2;c <= sqrt(m);c++)
+	{
+		if ( m % c == 0)
+		{
+			while (m % c == 0)
+			{
+				a = c;
+				while (a)
+				{
+					num += a % 10;
+					a /= 10;
+				}
+				m /= c;
+			}
+			tip = 1;
+		}
+	}
+	a = m;
+	while (a && m > 1 && tip)
+	{
+		num += a % 10;
+		a /= 10;
+	}
+	return num;
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int count = 0;
+	for (int a = 4;a <= n;a++)
+	{
+		int num1 = 0;
+		int num2 = 0;
+		int find = a;
+		while (find)
+		{
+			num1 += find % 10;
+			find /= 10;
+		}
+		num2 = test2(a);
+		if (num2 == num1)
+		{
+			count++;
+			printf("%d ", a);
+			if (count % 5 == 0)
+				printf("\n");
+		}
+		
+	}
+	return 0;
+}
