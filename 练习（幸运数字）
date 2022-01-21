@@ -1,0 +1,41 @@
+小明认为，如果以下条件之一成立，正整数 x 就是一个幸运数字:
+
+1. x是4的倍数;
+
+2. x是7的倍数;
+
+3. x 转换为字符串后包含子串“44”或“77”。
+
+例如，105 (7 的倍数), 442 (包含“44”), 1284 (4 的倍数)都是幸运数字，474 则不是。 编程统计 1 到 n 中幸运数字的数量。
+
+
+
+
+
+
+
+#include <stdio.h>
+int test(int a)
+{
+	while (a)
+	{
+		if (a % 100 == 44 || a % 100 == 77)
+			return 1;
+		else
+			a /= 10;
+	}
+	return 0;
+}
+int main()
+{
+	int n;
+	int count = 0;
+	scanf("%d", &n);
+	for (int a = 4;a <= n;a++)
+	{
+		if (a % 4 == 0 || a % 7 == 0 || test(a))
+			count++;
+	}
+	printf("%d", count);
+	return 0;
+}
