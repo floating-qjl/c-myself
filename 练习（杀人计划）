@@ -1,0 +1,33 @@
+由于约瑟夫经常坑队友一起自杀，所以需要应对不同的情况，即给定不同的n和k，要求输出每个人被杀死的顺序。
+
+
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int n, k;
+	scanf("%d%d", &n, &k);
+	int* arr = (int*)calloc(n, 4);
+	int a = 1;
+	int num = 0;
+	for (int b = 0;a <= n;b++)
+	{
+		if (arr[b] == 0)
+		{
+			num++;
+			if (num == k)
+			{
+				arr[b] = a++;
+				num -= k;
+			}
+		}	
+		if (b == n - 1)
+			b = -1;
+	}
+	for (int a = 0;a < n;a++)
+		printf("%d ", arr[a]);
+	return 0;
+}
