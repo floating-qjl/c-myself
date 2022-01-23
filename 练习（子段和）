@@ -1,0 +1,26 @@
+第一行给你两个数字n和m 接下来一行给你n个数字 接下来m行每行两个数字l,r，求l到r区间和
+
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int n, m;
+	scanf("%d%d", &n, &m);
+	int* arr = (int*)malloc(n * 4);
+	int* sum = (int*)calloc(n + 1, 4);
+	for (int a = 0;a < n;a++)
+	{
+		scanf("%d", &arr[a]);
+		sum[a + 1] = arr[a] + sum[a];
+	}
+	for (int a = 0;a < m;a++)
+	{
+		int left, right;
+		scanf("%d%d", &left, &right);
+		printf("%d\n", sum[right] - sum[left - 1]);
+	}
+	return 0;
+}
