@@ -1,0 +1,27 @@
+斐波那契数列为 1, 1, 2, 3, 5, 8, 13...1,1,2,3,5,8,13...，其中 3,5,83,5,8 在 33 到 99 的范围内，有 33 个数字
+
+
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int a, b;
+	scanf("%d%d", &a, &b);
+	int num = 0;
+	int* arr = (int*)calloc(b, 4);
+	arr[0] = arr[1] = 1;
+	for (int c = 0;c <= b;c++)
+	{
+		if (c >= 2)
+			arr[c] = arr[c - 1] + arr[c - 2];
+		if (arr[c] > b)
+			break;
+		if (arr[c] >= a)
+			num++;
+	}
+	printf("%d", num);
+	return 0;
+}
