@@ -1,0 +1,59 @@
+请将一个100位以内的8进制整数转换为2进制整数！
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	char arr[101] = { 0 };
+	scanf("%s", arr);
+	char* pa = arr;
+	int len = strlen(arr);
+	for (int count = 0;pa < arr + len;++pa, ++count)
+	{
+		int a = 0;
+		switch (*pa)
+		{
+		case '0':
+			break;
+		case '1':
+			a = 1;
+			break;
+		case '2':
+			a = 10;
+			break;
+		case '3':
+			a = 11;
+			break;
+		case '4':
+			a = 100;
+			break;
+		case '5':
+			a = 101;
+			break;
+		case '6':
+			a = 110;
+			break;
+		default:
+			a = 111;
+			break;
+		}
+		
+		if(count)
+			printf("%03d", a);
+		else
+			printf("%d", a);
+	}
+	return 0;
+}
