@@ -1,0 +1,28 @@
+从键盘读入一句英文句子，请把字符串中的数字删除，并输出。
+
+比如，输入：this123is4my56book，删除数字后输出：thisismybook。
+
+
+
+
+
+
+
+
+
+
+#include<stdio.h>
+
+int main()
+{
+	char* arr = (char*)calloc(101, 1);
+	gets(arr);
+	char* pa = arr;
+	while (*pa != '\0')
+	{
+		if (*pa < 48 || *pa > 57)
+			printf("%c", *pa);
+		pa++;
+	}
+	return 0;
+}
