@@ -1,0 +1,44 @@
+给定 n 个正整数 ai，请你输出这些数的乘积的约数个数，答案对 109+7取余数。
+
+
+#include <stdio.h>
+void add(int arr[][2], int tag)
+{
+	int k = 0;
+	while (arr[k][0] != tag)
+	{
+		if (arr[k][0] == 0)
+		{
+			arr[k][0] = tag;
+			break;
+		}
+		++k;
+	}
+	++arr[k][1];
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int arr[200][2] = { 0 };
+	long long num = 1;
+	for (int a = 0;a < n;a++)
+	{
+		int x;
+		scanf("%d", &x);
+		for (int b = 2;b <= x / b; ++b)
+		{
+			while (x % b == 0)
+			{
+				x /= b;
+				add(arr, b);
+			}
+		}
+		if (x > 1)
+			add(arr, x);
+	}
+	for (int a = 0;arr[a][1] > 0;++a)
+		num =num * (arr[a][1] + 1) % 1000000007;
+	printf("%lld", num);
+	return 0;
+}
