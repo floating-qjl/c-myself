@@ -1,0 +1,50 @@
+你知道你可以下载更多的内存吗? 有一个商店有n种不同的软件可以增加你的内存。 第i个内存增加软件需要a_ia 
+i
+​
+ GB的内存来运行(临时的，一旦程序运行完毕，你就会取回内存)，并给你一个额外的b_ib 
+i
+​
+ GB的内存(永久的)。 每个软件只能使用一次。 你的电脑目前有kkGB的内存。
+
+TIPS:如果使用内存增加软件所占用的内存比现有的内存大，那么就不能使用内存增加软件。
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while (t--)
+	{
+		int n, k;
+		scanf("%d%d", &n, &k);
+		int* arr1 = (int*)malloc(n * 4);
+		int* arr2 = (int*)malloc(n * 4);
+		for (int a = 0;a < n;a++)
+			scanf("%d", &arr1[a]);
+		for (int a = 0;a < n;a++)
+			scanf("%d", &arr2[a]);
+		for (int a = 0;a < n;a++)
+		{
+			int flag = 1;
+			for (int b = 0;b < n;b++)
+			{
+				if (k >= arr1[b] && arr1[b] != -1)
+				{
+					k += arr2[b];
+					arr1[b] = -1;
+					flag = 0;
+				}
+			}
+			if (flag)
+				break;
+		}
+		printf("%d\n", k);
+	}
+	return 0;
+}
