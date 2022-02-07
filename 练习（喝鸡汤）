@@ -1,0 +1,27 @@
+薛司令喜欢喝鸡汤！现在桌子上摆着一排n碗鸡汤，每碗鸡汤具有一个甜度a_ia 
+ ，薛司令一次能喝下连续的多碗鸡汤，但是他一次不能喝总甜度和超过m（可以等于m），否则.....！薛司令想要知道他最少喝几次才能把这些鸡汤都喝完。
+ 
+ 
+ 
+ 
+ 
+ #include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int n;
+	int max;
+	scanf("%d%d", &n, &max);
+	int* arr = (int*)calloc(n + 1, 4);
+	for (int a = 0;a < n;a++)
+		scanf("%d", &arr[a]);
+	int count = 0;
+	for (int* pa = arr ;pa < arr + n ;pa++)
+	{
+		if (*pa + *(pa + 1) <= max)
+			++pa;
+		++count;
+	}
+	printf("%d", count);
+	return 0;
+}
