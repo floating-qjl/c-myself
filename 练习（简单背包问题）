@@ -1,0 +1,52 @@
+有一个背包能装的重量maxw(正整数，0≤maxw≤20000)，同时有n件物品(0≤n≤100)
+，每件物品有一个重量wi(正整数)和一个价值pi(正整数)。要求从这n件物品中任取若干件装入背包内，使背包的物品价值最大。
+
+
+
+
+
+
+
+#include<stdio.h>
+#define W 20005
+#define N 105
+#define max(a, b) (a>b ? a : b)
+int f[N][W];
+int w[N], v[N];
+int main() {
+	int n, maxW; 
+	scanf("%d %d", &maxW, &n);
+	for (int i = 1; i <= n; i++) 
+		scanf("%d %d", &w[i], &v[i]);
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= maxW; j++)
+			if (j < w[i]) 
+				f[i][j] = f[i - 1][j];
+			else 
+				f[i][j] = max(f[i - 1][j], f[i - 1][j - w[i]] + v[i]);
+	printf("%d\n", f[n][maxW]);
+}
+
+
+
+
+
+
+
+
+
+
+#include<stdio.h>
+#define max(a, b) (a>b ? a : b)
+#define W 20005
+int f[W];
+
+int main(){
+	int n, maxW; scanf("%d %d", &maxW, &n);
+	for(int i=1; i<=n; i++){
+		int w, v; scanf("%d %d", &w, &v);
+		for(int j=maxW; j>=w; j--)
+			f[j] = max(f[j], f[j-w] + v);
+	}
+	printf("%d\n", f[maxW]);
+}
