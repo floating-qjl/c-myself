@@ -1,0 +1,21 @@
+n个数中，一个数出现奇数次，剩下的都出现偶数次，找出出现奇数次的数。
+
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	long long tag = 0;
+	long long exe;
+	for (int a = 0;a < n;++a)
+	{
+		scanf("%lld", &exe);
+		tag ^= exe;
+	}
+	printf("%lld", tag);
+	return 0;
+}
