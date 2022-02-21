@@ -1,0 +1,44 @@
+输入一个由()[]四种符号构成的字符串。判断其中的括号是否匹配，是，就输出yes，否则输出no。
+比如：输入“([])”、“([()])”、“[((()))]”、“()[][][]”这几个字符串（双引号内部的内容），我们都算是匹配的。
+再比如：输入“([)”、“([)]”、“([(]))”这几个字符串，我们都认为是不匹配的。
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+char judge(char a)
+{
+	if (a == ')')
+		return '(';
+	else
+		return '[';
+}
+int main()
+{
+	char arr[1000] = { 0 };
+	char tag[1000] = { 0 };
+	int top = -1;
+	scanf("%s", tag);
+	int len = strlen(tag);
+	int flag = 1;
+	for (int a = 0;a < len;++a)
+	{
+		if (tag[a] == '(' || tag[a] == '[')
+			arr[++top] = tag[a];
+		else
+		{
+			if (arr[top] != judge(tag[a]))
+			{
+				flag = 0;
+				break;
+			}
+			--top;
+		}
+	}
+	if (flag)
+		printf("yes\n");
+	else
+		printf("no\n");
+	return 0;
+}
