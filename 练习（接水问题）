@@ -1,0 +1,46 @@
+学校里有一个水房，水房里一共装有m个龙头可供同学们打开水，每个龙头每秒钟的供水量相等，均为1。
+现在有n名同学准备接水，他们的初始接水顺序已经确定。将这些同学按接水顺序从1到n编号，i号同学的接水量为wi。
+接水开始时，1到m号同学各占一个水龙头，并同时打开水龙头接水。当其中某名同学j完成其接水量要求wj后，
+下一名排队等候接水的同学k马上接替j同学的位置开始接水。这个换人的过程是瞬间完成的，且没有任何水的浪费
+。即j同学第x秒结束时完成接水，则k同学第x+1秒立刻开始接水。若当前接水人数n’不足m，则只有n’个龙头供水，其它m−n’个龙头关闭。
+现在给出n名同学的接水量，按照上述接水规则，问所有同学都接完水需要多少秒。（noip2010普及组复赛第2题）
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int arr[10001], head[101];
+	int n, m;
+	scanf("%d%d", &n, &m);
+	int max = 0;
+	int num = 0;
+	for (int a = 0;a < n;++a)
+	{
+		scanf("%d", &arr[a]);
+		if (arr[a] > max)
+			max = arr[a];
+	}
+	if (n <= m)
+		printf("%d", max);
+	else
+	{
+		for (int a = 0;a < m;++a)
+			head[a] = arr[num++];
+		qsort(head, m, 4, test);
+		while (num < n)
+		{
+			head[0] += arr[num++];
+			qsort(head, m, 4, test);
+		}
+		printf("%d", head[m - 1]);
+	}
+	return 0;
+}
