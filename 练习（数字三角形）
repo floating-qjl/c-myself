@@ -1,0 +1,44 @@
+上图给出了一个数字三角形。从三角形的顶部到底部有很多条不同的路径。对于每条路径，把路径上面的数加起来可以得到一个和，你的任务就是找到最大的和。
+
+路径上的每一步只能从一个数走到下一层和它最近的左边的那个数或者右 边的那个数。此外，向左下走的次数与向右下走的次数相差不能超过 1。
+5
+7
+3 8
+8 1 0
+2 7 4 4
+4 5 2 6 5
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int arr[100][100] = { 0 };
+int n, max;
+void dfs(int sum, int LL, int RR, int count)
+{
+	sum += arr[LL][RR];
+	if (LL >= n - 1 || RR >= n - 1)
+	{
+		if (abs(count) <= 1)
+			max = max > sum ? max : sum;
+		return;
+	}
+	else if (LL < n - 1)
+	{
+		dfs(sum, LL + 1, RR, count + 1);
+		if (RR <= LL)
+			dfs(sum, LL + 1, RR + 1, count - 1);
+	}
+}
+int main()
+{
+	scanf("%d", &n);
+	for (int a = 0;a < n;++a)
+	{
+		for (int b = 0;b <= a;++b)
+			scanf("%d", &arr[a][b]);
+	}
+	dfs(0, 0, 0, 0);
+	printf("%d", max);
+	return  0;
+}
