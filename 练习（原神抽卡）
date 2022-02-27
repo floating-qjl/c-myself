@@ -1,0 +1,33 @@
+抽取一次卡池花费 160160 原石，本道题不计算小保底，也不计算纠缠之缘。
+大保底定义：理论上，第 180180 抽必出该卡池的五星角色。
+原石来源：仅仅只有玩家完成每日委托所获得的 6060 原石。
+八重神子的卡池自开放之日起永不关闭（做梦）。
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int n, m;
+	scanf("%d%d", &n, &m);
+	int count = (180 - m) * 160;
+    if(n<count)
+	{
+		int num = (count - n);
+		if(num%60==0)
+			printf("%d", num/60);
+        else
+            printf("%d",num/60+1);
+	}
+    else
+    printf("0");
+	return 0;
+}
