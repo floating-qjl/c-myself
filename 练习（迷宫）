@@ -1,0 +1,93 @@
+一个迷宫由R行C列格子组成，有的格子里有障碍物，不能走；有的格子是空地，可以走。
+给定一个迷宫，求从左上角走到右下角最少需要走多少步(数据保证一定能走到)。只能在水平方向或垂直方向走，不能斜着走。
+
+//第一种方法：DFS（递归极易超时）
+
+#include <stdio.h>
+#include <stdlib.h>
+char arr[200][50];
+int ch[200][50];
+int r, c;
+int min = 100000000;
+void test(int LL, int RR, int sum)
+{
+	if (LL == r - 1 && RR == c - 1)
+	{
+		min = min < sum ? min : sum;
+		return;
+	}
+	ch[LL][RR] = 1;
+	if (arr[LL + 1][RR] == '.' && ch[LL + 1][RR] != 1)
+	{
+		test(LL + 1, RR, sum + 1);
+		ch[LL + 1][RR] = 0;
+	}
+	if (arr[LL][RR - 1] == '.' && ch[LL][RR - 1] != 1)
+	{
+		test(LL, RR - 1, sum + 1);
+		ch[LL][RR - 1] = 0;
+	}
+	if (arr[LL][RR + 1] == '.' && ch[LL][RR + 1] != 1)
+	{
+		test(LL, RR + 1, sum + 1);
+		ch[LL][RR + 1] = 0;
+	}
+	if (arr[LL - 1][RR] == '.' && ch[LL - 1][RR] != 1)
+	{
+		test(LL - 1, RR, sum + 1);
+		ch[LL - 1][RR] = 0;
+	}
+}
+int main()
+{
+	scanf("%d%d", &r, &c);
+	for (int a = 0;a < r;++a)
+		scanf("%s", arr[a]);
+	test(0, 0, 1);
+	printf("%d", min);
+	return 0;
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+char arr[100][100] = { '\0' };
+int ch[100][100] = { 0 };
+int road[4][2] = { {0,1},{1,0},{0,-1},{-1,0} };
+int r, c;
+int min = 100000000;
+void test(int LL, int RR, int sum)
+{
+	if (LL == r - 1 && RR == c - 1 )
+	{
+		min = sum < min ? sum : min;
+		return;
+	}
+	for (int a = 0;a < 4;++a)
+	{
+		int newLL = LL + road[a][0];
+		int newRR = RR + road[a][1];
+		if (arr[newLL][newRR] == '.' && ch[newLL][newRR] == 0)
+		{
+			ch[newLL][newRR] = 1;
+			test(newLL, newRR, sum + 1);
+			ch[newLL][newRR] = 0;
+		}
+	}
+}
+int main()
+{
+	scanf("%d%d", &r, &c);
+	for (int a = 0;a < r;++a)
+		scanf("%s", arr[a]);
+	test(0, 0, 1);
+	printf("%d", min);
+	return 0;
+}
+
+
+
+
+第二种方法：BFS（时间复杂度较低）
+
