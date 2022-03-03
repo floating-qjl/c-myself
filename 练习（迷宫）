@@ -91,3 +91,56 @@ int main()
 
 第二种方法：BFS（时间复杂度较低）
 
+//此题数据不算大，但是dfs仍会超时，因此必须使用bfs
+//c++使用bfs比较简单，而c语言必须手写队列
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct
+{
+	int x;
+	int y;
+	int step;
+}now;
+char arr[100][100];
+int visit[100][100];
+now queue[10000];
+int method[4][2] = { {0,1},{1,0},{0,-1},{-1,0} };
+int main()
+{
+	int newx = 0, newy = 0;
+	int r, c;
+	scanf("%d%d", &r, &c);
+	for (int a = 0;a < r;++a)
+		scanf("%s", arr[a]);
+	int rear = 0;
+	int front = 0;
+	queue[++rear].x = 0;
+	queue[rear].y = 0;
+	queue[rear].step = 1;
+	visit[0][0] = 1;
+	while (rear != front)
+	{
+		++front;
+		for (int a = 0;a < 4;++a)
+		{
+			newx = queue[front].x + method[a][0];
+			newy = queue[front].y + method[a][1];
+			if (arr[newx][newy] == '.' && visit[newx][newy] == 0)
+			{
+				rear = (rear + 1) % 10000;
+				queue[rear].x = newx;
+				queue[rear].y = newy;
+				queue[rear].step = queue[front].step + 1;
+				visit[newx][newy] = 1;
+			}
+			if (newx == r - 1 && newy == c - 1)
+			{
+				printf("%d", queue[rear].step);
+				return 0;
+			}
+		}
+	}
+	return 0;
+}
+``c
