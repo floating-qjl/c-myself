@@ -1,0 +1,56 @@
+非非想帮助他的一个朋友实现变成”猛1“的愿望！
+
+现在给定一个二进制数 xx，在它变为 11 之前，不断对它进行如下操作：
+
+如果 xx 为奇数，则将 xx 加 11。
+
+如果 xx 为偶数，则将 xx 除以 22。
+
+请问，多少次操作后，xx 会变为 11。
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+	char arr[1000000];
+	scanf("%s", arr);
+	int len = strlen(arr);
+	int num = 0;
+	int count = 0;
+	while (len > 1)
+	{
+		char* pa = arr + len - 1;
+		int flag = 0;
+		while (*pa == '0')
+		{
+			++num;
+			--len;
+			--pa;
+		}
+		while(*pa=='1')
+		{
+			*pa = '0';
+			++count;
+			--pa;
+			flag = 1;
+		}
+		if (flag)
+		{
+			if (pa >= arr)
+				*pa = '1';
+			++num;
+		}
+	}
+	if (count == 1)
+		printf("%d", num - 1);
+	else
+		printf("%d", num);
+	return 0;
+}
