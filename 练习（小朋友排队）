@@ -1,0 +1,69 @@
+n个小朋友站成一排。现在要把他们按身高从低到高的顺序排列，但是每次只能交换位置相邻的两个小朋友。
+
+每个小朋友都有一个不高兴的程度。开始的时候，所有小朋友的不高兴程度都是00。
+
+如果某个小朋友第一次被要求交换，则他的不高兴程度增加11，如果第二次要求他交换，则他的不高兴程度增加22（即不高兴程度为3），依次类推。当要求某个小朋友第kk次交换时，他的不高兴程度增加kk。
+
+请问，要让所有小朋友按从低到高排队，他们的不高兴程度之和最小是多少。
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+
+typedef long long LL;
+
+int n;
+
+struct
+{
+	int h;
+	int idx;
+	LL m;
+}tmp[100010], p[100010];
+
+void compound(int l, int r)
+{
+	if (l >= r) return;
+
+	int mid = (l + r) >> 1;
+
+	compound(l, mid),compound(mid + 1, r);
+
+	int k = l, i = l, j = mid + 1;
+
+	while (i <= mid && j <= r)
+	{
+		if (p[i].h <= p[j].h) tmp[k++] = p[i++];
+		else tmp[k++] = p[j++];
+	}
+	while (i <= mid) tmp[k++] = p[i++];
+	while (j <= r) tmp[k++] = p[j++];
+
+	for (int i = l;i < k;++i)
+	{
+		p[i] = tmp[i];
+		p[i].idx = i;
+		p[i].m = tmp[i].m + abs(tmp[i].idx - i);
+	}
+}
+
+int main()
+{
+	scanf("%d", &n);
+	for (int i = 1;i <= n;++i)
+	{
+		scanf("%d", &p[i].h);
+		p[i].idx = i;
+	}
+	compound(1, n);
+
+	LL sum = 0;
+	for (int i = 1;i <= n;++i)
+		sum += ((p[i].m) * (1 + (p[i].m))) / 2;
+
+	printf("%lld", sum);
+
+	return 0;
+}
