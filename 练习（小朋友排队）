@@ -67,3 +67,56 @@ int main()
 
 	return 0;
 }
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define N 1000010
+int h[N], count[N], tmp[N];
+int n;
+int lowbit(int x)
+{
+	return x & (-x);
+}
+void update(int x, int y)
+{
+	for (int a = x;a < N;a += lowbit(a))
+		tmp[a] += y;
+}
+long long sum(int x)
+{
+	long long res = 0;
+	for (int a = x;a;a -= lowbit(a))
+		res += tmp[a];
+	return res;
+}
+int main()
+{
+	scanf("%d", &n);
+	for (int a = 0;a < n;++a)
+	{
+		scanf("%d", &h[a]);
+		++h[a];
+	}
+	for (int a = 0;a < n;++a)
+	{
+		count[a] = sum(N - 1) - sum(h[a]);
+		update(h[a], 1);
+	}
+	memset(tmp, 0, N*4);
+	for (int a = n-1;a >=0;--a)
+	{
+		count[a] += sum(h[a] - 1);
+		update(h[a], 1);
+	}
+	long long res = 0;
+	for (int a = 0;a < n;++a)
+		res += (long long)count[a]*(count[a] + 1) / 2;
+	printf("%lld", res);
+	return 0;
+}
