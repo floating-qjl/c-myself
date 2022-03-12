@@ -1,0 +1,47 @@
+小蓝每天都锻炼身体。
+
+正常情况下，小蓝每天跑 11 千米。如果某天是周一或者月初（11 日），为了激励自己，小蓝要跑 22 千米。如果同时是周一或月初，小蓝也是跑 22 千米。
+
+小蓝跑步已经坚持了很长时间，从 20002000 年 11 月 11 日周六（含）到 20202020 年 1010 月 11 日周四（含）。请问这段时间小蓝总共跑步多少千米？
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int days[13] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+int main(int argc, char* argv[])
+{
+
+    int sum = 0;
+    int cycle = 6;
+    int flag = 0;
+    for (int a = 2000;a <= 2020;++a)
+    {
+        if ((a % 4 == 0 && a % 100 != 0) || a % 400 == 0)
+            days[2] = 29;
+        else
+            days[2] = 28;
+        for (int b = 1;b <= 12;++b)
+        {
+            if (a == 2020 && b == 10)
+            {
+                flag = 1;
+                break;
+            }
+            for (int c = 1;c <= days[b];++c)
+            {
+                ++sum;
+                if (c == 1 || cycle == 1)
+                    ++sum;
+                if (cycle == 7)
+                    cycle = 0;
+                ++cycle;
+            }
+        }
+        if (flag)
+            break;
+    }
+    printf("%d", sum + 2);
+    return 0;
+}
