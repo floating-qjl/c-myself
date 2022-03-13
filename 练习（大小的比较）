@@ -1,0 +1,17 @@
+2^n  是否大于 n^2
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	long long n;
+	scanf("%lld", &n);
+	if (n == 1 || n >= 5)
+		printf("Yes");
+	else
+		printf("No");
+	return 0;
+}
