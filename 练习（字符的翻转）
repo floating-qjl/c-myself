@@ -1,0 +1,44 @@
+给你一个长度为nn的字符串ss。字符串ss是二进制的，换句话说，只由0和1组成。
+
+字符串s正好有\frac{n}{2} 
+2
+n
+​
+ 个0和\frac{n}{2} 
+2
+n
+​
+ 个1（nn是偶数）。
+
+一个字符串的子串是该字符串的一个连续的子序列，在一次操作中，你可以逆转ss的任何子串。
+
+要使字符串s交替出现，所需的最少操作次数是多少？一般来说，有两种类型的交替字符串：010101...或10101010...。
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+char arr[110];
+int main()
+{
+	int n;
+	scanf("%d%s", &n, arr);
+	int sum1 = 0;
+	int sum2 = 0;
+	for (int a = 0;a < n;++a)
+	{
+		if (arr[a] == '1')
+			if (arr[a - 1] == '0')
+				++sum1;
+	}
+	for (int a = 0;a < n;++a)
+	{
+		if (arr[a] == '1')
+			if (arr[a + 1] == '0')
+				++sum2;
+	}
+	int min = sum1 > sum2 ? n / 2 - sum1 : n / 2 - sum2;
+	printf("%d", min);
+	return 0;
+}
