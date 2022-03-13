@@ -1,0 +1,33 @@
+给定两个两个正整数aa和bb（a<ba<b）。之后，可以应用以下任何一种操作，次数不限。
+
+a = a + 1a=a+1（将a增加1）。
+
+b = b + 1b=b+1 (将b增加1)。
+
+a = a | ba=a∣b（用a和b的位数OR替换a）。
+
+求出使a和b相等所需的最少运算次数。
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int a, b;
+	scanf("%d%d", &a, &b);
+	int num1 = b - a;
+	int num2 = 1000000;
+	int num3 = 1000000;
+	for (int c = a;c <= b;++c)
+		if ((c | b) == b)
+			num2 = num2 < (c | b - b + c - a + 1) ? num2 : (c | b - b + c - a + 1);
+	for (int c = b;c <= 4 * b;++c)
+		if ((a | c) == c)
+			num3 = num3 < (c - b + 1) ? num3 : (c - b + 1);
+	int mmm = num1 < num2 ? num1 : num2;
+	mmm = mmm < num3 ? mmm : num3;
+	printf("%d", mmm);
+	return 0;
+}
