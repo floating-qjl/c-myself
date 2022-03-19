@@ -1,0 +1,32 @@
+如果一个分数的分子和分母的最大公约数是 11，这个分数称为既约分数。
+
+例如 \frac{3}{4} ,\frac{1}{8} ,\frac{7}{1} 
+ ， 都是既约分数。
+
+请问，有多少个既约分数，分子和分母都是 11 到 20202020 之间的整数（包括 11 和 20202020）？
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int test(int a, int b)
+{
+	if (a % b == 0)
+		return b;
+	test(b, a % b);
+}
+int main()
+{
+	int sum = 0;
+	for (int a = 1;a <= 2020;++a)
+	{
+		for (int b = 1;b <= 2020;++b)
+		{
+			if (test(a, b) == 1)
+				++sum;
+		}
+	}
+	printf("%d", sum);
+	return 0;
+}
