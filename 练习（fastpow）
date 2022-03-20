@@ -1,0 +1,30 @@
+求xp mod m 的值。
+提示：若 p 为偶数，xp=(x2)p/2；若 p 为奇数，xp=x*(x2)(p-1)/2，该题可以采用分治法求解。
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+long long test(long long x, long long p, long long m)
+{
+    if (p == 0)
+		return 1;
+	long long sum = 1;
+	while (p)
+	{
+		if (p & 1)
+			sum = sum * x % m;
+		x = x * x % m;
+		p /= 2;
+	}
+	return sum;
+}
+int main()
+{
+	int x, p, m;
+	scanf("%d%d%d", &x, &p, &m);
+	printf("%lld", test(x, p, m));
+	return 0;
+}
