@@ -1,0 +1,36 @@
+大家都知道 Fibonacci 数列吧，
+
+现在问题很简单，输入 n 和 m， 求 f_nf 
+
+的前 n 项和 S_nS  mod m
+
+
+
+#include <stdio.h>
+#include <memory.h>
+long long tmp[3][3] = { {1,0,0},{0,1,0},{0,0,1} };
+long long arr[3][3] = { {2,0,-1},{1,0,0},{0,1,0} };
+long long n, m;
+void multiply(long long a[][3], long long b[][3])
+{
+	long long ch[3][3]={0};
+	for (int i = 0;i <= 2;++i)
+		for (int j = 0;j <= 2;++j)
+			for (int k = 0;k <= 2;++k)
+				ch[i][j] = (ch[i][j] + a[i][k] * b[k][j]%m) % m;
+	memcpy(a, ch, sizeof(ch));
+}
+int main()
+{
+	scanf("%lld%lld", &n, &m);
+	while (n)
+	{
+		if (n & 1)
+			multiply(tmp, arr);
+		multiply(arr, arr);
+		n >>= 1;
+	}
+	long long end=2*tmp[2][0]+tmp[2][1];
+	printf("%lld",(end%m+m)%m );
+	return 0;
+}
