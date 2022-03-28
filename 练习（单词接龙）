@@ -1,0 +1,47 @@
+晶晶同学刚刚学会接龙游戏，接龙游戏是这样玩的，第一个同学说出一个英文单词，第二个同学只要能想出一个单词，该单词的第一个字母和上一个单词的最后一个字母只要相同，就算接龙成功。
+
+比如：page earth habit ten nose，这5个单词就成功组成了一条龙；
+
+而page nose这两个单词就是不能接上的龙。
+
+晶晶想知道，如果读入一句英文，该句子中只包含若干英文单词和空格（单词都是由小写字母组成，单词之间由1个或多个空格隔开），那么这些单词能成功接龙吗？
+
+如果能够成功接龙，请输出“Y”，否则请输出“N”。
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+char arr[1000];
+int main()
+{
+	int flag = 1;
+	gets(arr);
+	char* p1 = arr;
+	char* p2 = arr;
+	while (*p1!='\0')
+	{
+		while (*p1 == ' ')
+			++p1;
+		while (*p1 >= 'a' && *p1 <= 'z')
+			++p1;
+		if (*p1 == '\0')
+			break;
+		*p2 = *(p1 - 1);
+		while (*p1 == ' ')
+			++p1;
+		if (*p1 == '\0')
+			break;
+		if (*p2 != *p1)
+		{
+			flag = 0;
+			break;
+		}
+	}
+	if (flag)
+		printf("Y");
+	else
+		printf("N");
+	return 0;
+}
