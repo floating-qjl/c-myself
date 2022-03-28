@@ -1,0 +1,20 @@
+某国家有n种不同面值的货币，第i种货币价值ai元，请问：如果每种货币都提供任意多的数量的情况下，如果需要m元金额的货币，有多少种不同的方案？
+
+
+#include <stdio.h>
+long long dp[5005];
+int arr[105];
+int main()
+{
+	int n, m;
+	scanf("%d%d", &n, &m);
+	for (int a = 1;a <= n;++a)
+		scanf("%d", &arr[a]);
+	dp[0] = 1;
+	for (int a = 1;a <= n;++a)
+		for (int b = 0;b <= m;++b)
+			if (b >= arr[a])
+				dp[b] += dp[b - arr[a]];
+	printf("%lld", dp[m]);
+	return 0;
+}
