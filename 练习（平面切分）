@@ -1,0 +1,65 @@
+平面上有 NN 条直线，其中第 ii 条直线是 y = A_i \times x + B_iy=A 
+
+请计算这些直线将平面分成了几个部分。
+
+
+
+#include <stdio.h>
+typedef struct
+{
+    double x;
+    double y;
+}shit;
+int arr[1005][2];
+shit ch[1005];
+int forbid[1005];
+int main()
+{
+    int n, num;
+    scanf("%d", &n);
+    long long sum = 0;
+    for (int a = 0;a < n;++a)
+    {
+        scanf("%d%d", &arr[a][0], &arr[a][1]);
+        memset(ch, 0, sizeof(ch));
+        num = 0;
+        for (int b = 0;b < a;++b)
+        {
+            if (forbid[b])
+                continue;
+            if (arr[a][0] == arr[b][0])
+            {
+                if (arr[a][1] == arr[b][1])
+                {
+                    forbid[a] = 1;
+                    break;
+                }
+                else
+                    continue;
+            }
+            int up = arr[b][1] - arr[a][1];
+            int down = arr[a][0] - arr[b][0];
+            double x = (double)(arr[b][1] - arr[a][1]) / (double)(arr[a][0] - arr[b][0]);
+            double y = x * arr[a][0] + arr[a][1];
+            int flag = 0;
+            for (int c = 0;c < num ;++c)
+            {
+                if (x == ch[c].x && y == ch[c].y)
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+            if(flag==0)
+            {
+                ch[num].x = x;
+                ch[num].y = y;
+                ++num;
+            }
+        }
+        if (!forbid[a])
+            sum += num + 1;
+    }
+    printf("%lld", sum + 1);
+    return 0;
+}
