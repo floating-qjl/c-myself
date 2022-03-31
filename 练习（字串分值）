@@ -1,0 +1,61 @@
+对于一个字符串 SS，我们定义 SS 的分值 f(S)f(S) 为 SS 中恰好出现一次的字符个数。例如 f(aba) = 1，f(abc) = 3, f(aaa) = 0f(aba)=1，f(abc)=3,f(aaa)=0。
+
+现在给定一个字符串 S_{0 \cdots n − 1}S 
+0⋯n−1
+​
+ （长度为 nn，1 \leq n \leq 10^51≤n≤10 
+5
+ ），请你计算对于所有 SS 的非空子串 S_{i \cdots j}(0 ≤ i ≤ j < n)S 
+i⋯j
+​
+ (0≤i≤j<n)，f(S_{i \cdots j})f(S 
+i⋯j
+​
+ ) 的和是多少。
+ 
+ 
+ 
+ #include <stdio.h>
+#include <string.h>
+char arr[100010];
+int ch[26];
+int prior[100010];
+int next[100010];
+int main()
+{
+	scanf("%s", arr);
+	int len = strlen(arr);
+	memset(ch, -1, sizeof(ch));
+	for (int a = 0;a < len;++a)
+	{
+		if (ch[arr[a] - 'a'] == -1)
+		{
+			prior[a] = a;
+			ch[arr[a] - 'a'] = a;
+		}
+		else
+		{
+			prior[a] = a - ch[arr[a] - 'a'] - 1;
+			ch[arr[a] - 'a'] = a;
+		}
+	}
+	memset(ch, -1, sizeof(ch));
+	for (int a = len - 1;a >= 0;--a)
+	{
+		if (ch[arr[a] - 'a'] == -1)
+		{
+			next[a] = len - a - 1;
+			ch[arr[a] - 'a'] = a;
+		}
+		else
+		{
+			next[a] = ch[arr[a] - 'a'] - a - 1;
+			ch[arr[a] - 'a'] = a;
+		}
+	}
+	long long sum = 0;
+	for (int a = 0;a < len;++a)
+		sum += (prior[a] + 1) * (next[a] + 1);
+	printf("%lld", sum);
+	return 0;
+}
