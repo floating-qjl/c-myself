@@ -1,0 +1,60 @@
+设有一个N*N方格的迷宫，入口和出口分别在左上角和右上角。
+
+迷宫格子中分别放有0和1，0表示可通，1表示不能，
+
+迷宫走的规则如下：
+
+即从某点开始，有八个方向可走，前进方格中数字为0时表示可通过，为1时表示不可通过，要另找路径。
+
+找出从入口（左上角）到出口（又上角）的路径(不能重复)。输出路径总数。如果无法到达，输出0。
+
+
+
+#include <stdio.h>
+
+int arr[15][15];
+int visit[15][15];
+int pace[8][2] = { {-1,-1},{-1.0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1} };
+int sum;
+int n;
+void dfs(int x, int y)
+{
+    if (x == 1 && y == n)
+    {
+        ++sum;
+        return;
+    }
+    else
+    {
+        for (int a = 0; a < 8; ++a)
+        {
+            int newx = x + pace[a][0];
+            int newy = y + pace[a][1];
+            if (arr[newx][newy] == 0 && visit[newx][newy] == 0)
+            {
+                visit[newx][newy] = 1;
+                dfs(newx, newy);
+                visit[newx][newy] = 0;
+            }
+        }
+    }
+}
+int main()
+{
+
+    scanf("%d", &n);
+    for (int a = 0; a < 15; ++a)
+        for (int b = 0; b < 15; ++b)
+        {
+            if (a >= 1 && a <= n && b >= 1 && b <= n)
+                scanf("%d", &arr[a][b]);
+            else
+                arr[a][b] = -1;
+
+        }
+    visit[1][1] = 1;
+    dfs(1, 1);
+    printf("%d", sum);
+
+    return 0;
+}
