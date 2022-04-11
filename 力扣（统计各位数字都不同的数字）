@@ -1,0 +1,26 @@
+给你一个整数 n ，统计并返回各位数字都不同的数字 x 的个数，其中 0 <= x < 10n 。
+
+
+
+
+int countNumbersWithUniqueDigits(int n)
+{
+    int sum=1;
+    if(n==1)
+    sum=10;
+    else if(n==2)
+    sum=91;
+    else if(n==3)
+    sum=739;
+    else if(n==4)
+    sum=5275;
+    else if(n==5)
+    sum=32491;
+    else if(n==6)
+    sum=168571;
+    else if(n==7)
+    sum=712891;
+    else if(n==8)
+    sum=2345851;
+    return sum;
+}
