@@ -1,0 +1,99 @@
+小明是蓝桥王国的骑士，他喜欢不断突破自我。
+
+这天蓝桥国王给他安排了 NN 个对手，他们的战力值分别为 a_1,a_2,...,a_na 
+
+ ，且按顺序阻挡在小明的前方。对于这些对手小明可以选择挑战，也可以选择避战。
+
+身为高傲的骑士，小明从不走回头路，且只愿意挑战战力值越来越高的对手。
+
+请你算算小明最多会挑战多少名对手。
+
+
+
+
+
+
+第一种 有时间限制
+#include <stdio.h>
+#include <stdlib.h>
+#define N 300005
+int a[N],dp[N];
+int main(int argc, char *argv[])
+{
+  // 请在此输入您的代码
+  int n;
+  scanf("%d",&n);
+  for(int k=1;k<=n;++k)
+      scanf("%d",&a[k]);
+  dp[1]=1;
+  for(int k=2;k<=n;++k)
+  {
+    int max=0;
+    for(int i=1;i<k;++i)
+        if(a[k]>a[i]&&dp[i]>max)
+            max=dp[i];
+    dp[k]=max+1;
+  }
+  printf("%d",dp[n]);
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+第二种 时间效率高 二分+贪心
+#include <stdio.h>
+#include <stdlib.h>
+#define N 300010
+int arr[N],dp[N];
+int sort(int right,int key)
+{
+  int left=1;
+  int pop=0;
+  while(left<right)
+  {
+    int middle=(left+right)/2;
+    if(dp[middle]<key)
+    {
+      left=middle+1;
+      pop=left;
+    }
+    else
+    {
+      right=middle;
+      pop=right;
+    }
+  }
+  return pop;
+}
+int main(int argc, char *argv[])
+{
+  // 请在此输入您的代码
+  int n;
+  scanf("%d",&n);
+  for(int a=1;a<=n;++a)
+    scanf("%d",&arr[a]);
+  int len=1;
+  dp[1]=arr[1];
+  for(int a=2;a<=n;++a)
+  {
+    if(arr[a]>dp[len])
+      dp[++len]=arr[a];
+    else
+    {
+      int elert=sort(len,arr[a]);
+      dp[elert]=arr[a];
+    }
+  }
+  printf("%d",len);
+  return 0;
+}
