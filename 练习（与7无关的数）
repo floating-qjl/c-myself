@@ -1,0 +1,35 @@
+一个整数，如果这个数能够被7整除，或者其中有一位是7，我们称为这个数是与7有关的数。比如：14能被7整除，17有一位为7，这两个数都是与7有关的数。
+请你编程求出1~n（n<=999）中，与7无关的数的总和是多少？
+比如1~10中与7无关的数的和为：1+2+3+4+5+6+8+9+10=48。
+
+
+
+#include <stdio.h>
+int test(int a)
+{
+    int flag=1;
+    while(a)
+    {
+        int b=a%10;
+        a/=10;
+        if(b==7)
+        {
+            flag=0;
+            break;
+        }
+    }
+    return flag;
+}
+int main()
+{
+    int sum=0;
+    int n;
+    scanf("%d",&n);
+    for(int a=1;a<=n;++a)
+    {
+        if(a%7!=0&&test(a))
+          sum+=a;
+    }
+    printf("%d",sum);
+    return 0;
+}
