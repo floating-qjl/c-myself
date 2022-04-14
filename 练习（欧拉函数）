@@ -1,0 +1,36 @@
+
+在数论中，对正整数n，欧拉函数φ(n)φ(n)是小于或等于n的正整数中与n互质的数的数目。
+
+此函数以其首名研究者欧拉命名，它又称为φ函数（由高斯所命名）或是欧拉总计函数（totient function，由西尔维斯特所命名）
+
+例如φ(8) = 4φ(8)=4，因为1,3,5,71,3,5,7均和88互质。
+
+补充：aa和bb互质的等价条件是 aa和bb的最大公约数为11
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+int gcd(int a,int b)
+{
+    return a%b==0?b:gcd(b,a%b);
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int sum=0;
+    for(int a=1;a<=n;++a)
+    {
+      if(gcd(a,n)==1)
+          ++sum;
+    }
+    printf("%d",sum);
+    return 0;
+}
