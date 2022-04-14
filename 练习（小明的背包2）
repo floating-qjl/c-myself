@@ -1,0 +1,37 @@
+小明有一个容量为 VV 的背包。
+
+这天他去商场购物，商场一共有 NN 种物品，第 ii 种物品的体积为 w_iw 
+i
+​
+ ，价值为 v_iv 
+i
+​
+ ，每种物品都有无限多个。
+
+小明想知道在购买的物品总体积不超过 VV 的情况下所能获得的最大价值为多少，请你帮他算算。
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#define max(a,b) a>b?a:b
+int dp[1005];
+int main(int argc, char *argv[])
+{
+  // 请在此输入您的代码
+  int n,v;
+  scanf("%d%d",&n,&v);
+  for(int a=1;a<=n;++a)
+  {
+    int wi,vi;
+    scanf("%d%d",&wi,&vi);
+    for(int b=wi;b<=v;++b)
+    {
+      dp[b]=max(dp[b],dp[b-wi]+vi);
+    }
+  }
+  printf("%d",dp[v]);
+  return 0;
+}
