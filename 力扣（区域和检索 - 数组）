@@ -1,0 +1,33 @@
+给定一个整数数组  nums，处理以下类型的多个查询:
+
+计算索引 left 和 right （包含 left 和 right）之间的 nums 元素的 和 ，其中 left <= right
+实现 NumArray 类：
+
+NumArray(int[] nums) 使用数组 nums 初始化对象
+int sumRange(int i, int j) 返回数组 nums 中索引 left 和 right 之间的元素的 总和 ，包含 left 和 right 两点（也就是 nums[left] + nums[left + 1] + ... + nums[right] )
+
+
+
+
+typedef struct 
+{
+    int* sum;
+} NumArray;
+
+NumArray* numArrayCreate(int* nums, int numsSize) 
+{
+    NumArray* ret=(NumArray*)malloc(sizeof(NumArray));
+    ret->sum=(int*)malloc((numsSize+10)*4);
+    for(int a=1;a<=numsSize;++a)
+      ret->sum[a]=ret->sum[a-1]+nums[a-1];
+    return ret;
+}
+int numArraySumRange(NumArray* obj, int left, int right) 
+{
+  return obj->sum[right+1]-obj->sum[left];
+}
+
+void numArrayFree(NumArray* obj) 
+{
+    free(obj->sum);
+}
