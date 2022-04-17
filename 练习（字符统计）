@@ -1,0 +1,26 @@
+非非现在手上有一个长度为 nn 的字符串，这串字符串里仅包含 2626 个小写字母。
+
+非非想搞清楚一件事情，这个字符串里，字符 zz 和 ff 一共出现了多少次？
+
+
+
+
+
+
+
+
+#include <stdio.h>
+char arr[100010];
+int main()
+{
+	int n;
+	scanf("%d%s", &n,arr);
+	int num = 0;
+	for (int a = 0;a < n;++a)
+	{
+		if (arr[a] == 'z' || arr[a] == 'f')
+			++num;
+	}
+	printf("%d", num);
+	return 0;
+}
