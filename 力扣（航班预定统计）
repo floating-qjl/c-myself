@@ -1,0 +1,29 @@
+这里有 n 个航班，它们分别从 1 到 n 进行编号。
+
+有一份航班预订表 bookings ，表中第 i 条预订记录 bookings[i] = [firsti, lasti, seatsi] 意味着在从 firsti 到 lasti （包含 firsti 和 lasti ）的 每个航班 上预订了 seatsi 个座位。
+
+请你返回一个长度为 n 的数组 answer，里面的元素是每个航班预定的座位总数。
+
+
+
+
+
+
+int* corpFlightBookings(int** bookings, int bookingsSize, int* bookingsColSize, int n, int* returnSize)
+{
+    int* ch=(int*)calloc(n+1,4);
+    int* arr=(int*)calloc(n+1,4);
+    for(int a=0;a<bookingsSize;++a)
+    {
+        ch[bookings[a][0]]+=bookings[a][2];
+        if(bookings[a][1]+1 <= n)
+          ch[bookings[a][1]+1]-=bookings[a][2];
+    }
+    arr[0]=ch[1];
+    for(int a=1;a<n;++a)
+    {
+        arr[a]=arr[a-1]+ch[a+1];
+    }
+    *returnSize=n;
+    return arr;
+}
