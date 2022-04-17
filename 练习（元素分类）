@@ -1,0 +1,36 @@
+给定一个长度为 nn 的整数数组 a_1, a_2, …, a_na  。
+
+现在，需要你对数组中的每个元素进行分类。
+
+每个元素要么划分至 bb 类，要么划分至 cc 类。
+
+我们设所有 bb 类元素的相加之和为 sumbsumb，所有 cc 类元素的相加之和为 sumcsumc。
+
+请你计算 sumb−sumcsumb−sumc 的最大可能值。
+
+如果某类元素的个数为 00，则该类元素的相加之和视为 00。
+
+
+
+
+
+
+#include <stdio.h>
+int arr[105];
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int sumb = 0;
+	int sumc = 0;
+	for (int a = 0;a < n;++a)
+	{
+		scanf("%d", &arr[a]);
+		if (arr[a] >= 0)
+			sumb += arr[a];
+		else
+			sumc += arr[a];
+	}
+	printf("%d", sumb - sumc);
+	return 0;
+}
