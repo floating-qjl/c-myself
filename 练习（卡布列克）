@@ -1,0 +1,43 @@
+任意一个不是由完全相同数字组成的四位数，如果对它们的每位数字重新排序，组成一个最大的数和一个最小的数，然后用较大数减去较小数，
+差不够四位数时补零，类推下去，最后将变成一个固定的数：61746174，这就是卡布列克常数。
+现在给定一个符合题意的四位数，请问经过多少次操作，会得到 61746174。
+
+
+
+#include <stdlib.h>
+#include <stdio.h>
+int arr[5];
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+void change(int n)
+{
+	int num = 0;
+	while (n)
+	{
+		arr[num++] = n % 10;
+		n /= 10;
+	}
+	for(int a=num;a<4;++a)
+	  arr[a]=0;
+	qsort(arr, 4, 4, test);
+}
+int main()
+{
+	int n;
+    int kk=0;
+	scanf("%d", &n);
+	while (n!=0&&n!=6174)
+	{
+		change(n);
+		int max = arr[3] * 1000 + arr[2] * 100 + arr[1] * 10 + arr[0];
+		int min = arr[0] * 1000 + arr[1] * 100 + arr[2] * 10 + arr[3];
+		n = max - min;
+		++kk;
+		if (n == 6174)
+			break;
+	}
+	printf("%d", kk);
+	return 0;
+}
