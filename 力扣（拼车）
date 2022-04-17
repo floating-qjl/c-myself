@@ -1,0 +1,34 @@
+车上最初有 capacity 个空座位。车 只能 向一个方向行驶（也就是说，不允许掉头或改变方向）
+
+给定整数 capacity 和一个数组 trips ,  trip[i] = [numPassengersi, fromi, toi] 表示第 i 次旅行有 numPassengersi 乘客，接他们和放他们的位置分别是 fromi 和 toi 。这些位置是从汽车的初始位置向东的公里数。
+
+当且仅当你可以在所有给定的行程中接送所有乘客时，返回 true，否则请返回 false。
+
+
+
+
+
+bool carPooling(int** trips, int tripsSize, int* tripsColSize, int capacity)
+{
+    int arr[1010]={0};
+    int ch[1010]={0};
+    for(int a=0;a<tripsSize;++a)
+    {
+        ch[trips[a][1]]+=trips[a][0];
+        ch[trips[a][2]]-=trips[a][0];
+    }
+    arr[0]=ch[0];
+    if(arr[0]>capacity)
+      return false;
+    int flag=1;
+    for(int a=1;a<1001;++a)
+    {
+        arr[a]=arr[a-1]+ch[a];
+        if(arr[a]>capacity)
+        {
+            flag=0;
+            break;
+        }
+    }
+    return flag; 
+}
