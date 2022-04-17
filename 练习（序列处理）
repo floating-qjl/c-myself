@@ -1,0 +1,39 @@
+给定一个长度为 nn 的整数序列 a_1, a_2, …, a_na 
+
+我们可以对该序列进行修改操作，每次操作选中其中一个元素，并使其增加 11。
+
+现在，请你计算要使得序列中的元素各不相同，至少需要进行多少次操作。
+
+
+
+
+#include <stdio.h>
+int arr[3010];
+int test(const void* e1, const void* e2)
+{
+	return *(int*)e1 - *(int*)e2;
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int sum = 0;
+	for (int a = 0;a < n;++a)
+	{
+		scanf("%d", &arr[a]);
+	}
+	qsort(arr, n, 4, test);
+	for (int a = 0;a < n;++a)
+	{
+		int res = arr[a];
+		int tip = a + 1;
+		while(res == arr[tip])
+		{
+			++arr[tip];
+			++sum;
+			++tip;
+		}
+	}
+	printf("%d", sum);
+	return 0;
+}
