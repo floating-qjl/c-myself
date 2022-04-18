@@ -1,0 +1,24 @@
+一开始你拥有1个已供电的插口,现拥有一种插座，这个插座上共有aa个插口， 现在需要至少b个插口，请问一共需要几个这样的插座?
+
+
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a,b;
+    int sum=1;
+    scanf("%d%d",&a,&b);
+    int num=b-a;
+    if(num>0)
+    {
+      if(num % (a-1)==0)
+        sum+=num/(a-1);
+      else
+        sum+=num/(a-1)+1;
+    }
+    printf("%d",sum);
+    return 0;
+}
