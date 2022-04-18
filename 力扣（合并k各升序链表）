@@ -1,0 +1,62 @@
+给你一个链表数组，每个链表都已经按升序排列。
+
+请你将所有链表合并到一个升序链表中，返回合并后的链表。
+
+
+
+
+
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+int find(int n,int*arr)
+{
+    int min=10000;
+    int index=-1;
+    for(int a=0;a<n;++a)
+    {
+        if(arr[a]<=min)
+        {
+          min=arr[a];
+          index=a;
+        }
+    }
+    return index;
+}
+struct ListNode* mergeKLists(struct ListNode** lists, int listsSize)
+{
+    struct ListNode* p=(struct ListNode*)malloc(sizeof(struct ListNode));
+    int arr[10010]={-99999};
+    p->next=NULL;
+    struct ListNode* dummy=p;
+    for(int a=0;a<listsSize;++a)
+    {
+        if(lists[a]==NULL)
+          arr[a]=999999999;
+        else
+          arr[a]=lists[a]->val;
+    }
+    int j=0;
+    while(lists!=NULL&&arr[0]!=-99999)
+    {
+        j=find(listsSize,arr);
+        if(j==-1)
+          break;
+        p->next=lists[j];
+        if(lists[j]->next!=NULL)
+        {
+          lists[j]=lists[j]->next;
+          arr[j]=lists[j]->val;
+        }
+        else
+          arr[j]=999999999;
+        p=p->next;
+    }
+    return dummy->next;
+}
