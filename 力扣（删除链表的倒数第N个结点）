@@ -1,0 +1,17 @@
+给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n)
+{
+    struct ListNode* p = (struct ListNode*)malloc(sizeof(struct ListNode));
+    p->next=head;
+    for(int a=0;a<n;++a)
+      head=head->next;
+    struct ListNode* ret=p;
+    while(head!=NULL)
+    {
+        head=head->next;
+        ret=ret->next;
+    }
+    ret->next=ret->next->next;
+    return p->next;
+}
