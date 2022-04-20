@@ -1,0 +1,25 @@
+给定一个长度为 n+1n+1 的数组numsnums，数组中所有的数均在 1∼n+11∼n+1的范围内，其中n≥1n≥1。
+
+请找出数组中唯一一个仅重复一次的数，但不能修改输入的数组。
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int*arr=(int*)malloc((n+1)*4);
+    int sum=n*(1+n)/2;
+    for(int a=0;a<=n;++a)
+    {
+        scanf("%d",&arr[a]);
+        sum-=arr[a];
+    }
+    printf("%d",abs(sum));
+    free(arr);
+    arr=NULL;
+}
