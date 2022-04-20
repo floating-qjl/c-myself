@@ -1,0 +1,27 @@
+给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。
+
+
+
+
+
+
+
+
+
+struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) 
+{
+        struct ListNode *pa=headA;
+        struct ListNode *pb=headB;
+        while(pa!=pb)
+        {
+            if(pa==NULL)
+              pa=headB;
+            else
+              pa=pa->next;
+            if(pb==NULL)
+              pb=headA;
+            else
+              pb=pb->next;
+        }
+        return pa;
+}
