@@ -1,0 +1,54 @@
+给定两个字符串 SS 和 TT. 判断是否可能使得 SS 和 TT 至多一次操作后相等:
+
+选择 SS 中两个相邻字符并交换.需要注意的是也可以不操作.
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+char arr1[101];
+char arr2[101];
+int ch[26];
+int main()
+{
+    scanf("%s%s",arr1,arr2);
+    int sum=0;
+    int len=strlen(arr1);
+    for(int a=0;a<len;++a)
+        ++ch[arr1[a]-'a'];
+    for(int a=0;a<len;++a)
+    {
+        if(arr1[a]==arr2[a])
+        {
+          --ch[arr1[a]-'a'];
+          arr2[a]='1';
+        }
+    }
+    for(int a=0;a<26;++a)
+      sum+=ch[a];
+    if(sum==0)
+      printf("Yes");
+    else if(sum==2)
+    {
+        int num=0;
+        for(int a=0;a<len-1;++a)
+        {
+            if(arr2[a]!='1')
+              {
+                  num=a;
+                  break;
+              }
+        }
+        if(arr2[num+1]=='1'||ch[arr2[num]-'a']==0||ch[arr2[num+1]-'a']==0)
+          printf("No");
+        else
+          printf("Yes");
+    }
+    else
+      printf("No");
+    return 0;
+}
