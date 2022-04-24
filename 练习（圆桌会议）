@@ -1,0 +1,45 @@
+有NN个人住在数轴上
+
+第 ii 个人生活在坐标X_iX 
+
+你将举行一个NN个人都必须参加的会议。
+
+会议可以在任何整数坐标下举行。
+
+如果您选择在坐标PP处举行会议，则第ii个人将花费(X_i-P)^2(X 
+
+ 体力参加会议。
+
+请妥善选择PP坐标使得人们花费的体力总和最小
+
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+#define MAX(a,b) a<b?a:b
+int arr[105];
+int main()
+{
+    int n;
+    int sum=0;
+    scanf("%d",&n);
+    for(int a=0;a<n;++a)
+    {
+      scanf("%d",&arr[a]);
+      sum+=arr[a];
+    }
+    int p1=sum/n;
+    int p2=p1+1;
+    long long count1=0;
+    long long count2=0;
+    for(int a=0;a<n;++a)
+    {
+        count1+=pow(arr[a]-p1,2);
+        count2+=pow(arr[a]-p2,2);
+    }
+    printf("%lld",MAX(count1,count2));
+    return 0;
+}
