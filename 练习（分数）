@@ -1,0 +1,50 @@
+你正在参加考试， 这场考试一共有NN道题目， 每道题目的分数为S_iS 
+i
+​
+ 
+
+你对每个问题的回答将被判断为“正确”或“错误”，正确问题的总分将作为你的成绩。
+
+答完后，当场给出答案评分，并显示成绩...
+
+但是，考试评分系统近日出了BUG.
+
+如果成绩是 10 的倍数，则成绩将在屏幕上显示为0， 否则，屏幕将显示正确的分数。
+
+请问在这种情况下，屏幕上可以显示的最大分数是多少？
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int arr[101];
+int test(const void*e1,const void*e2)
+{
+  return *(int*)e1-*(int*)e2;
+}
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int sum=0;
+  for(int a=0;a<n;++a)
+  {
+    scanf("%d",&arr[a]);
+    sum+=arr[a];
+  }
+  qsort(arr,n,4,test);
+  int num=0;
+  while(sum%10==0 && num<100)
+  {
+    if(arr[num]%10!=0)
+      sum-=arr[num];
+    num++;
+  }
+  if(sum%10==0)
+    printf("%d",0);
+  else
+    printf("%d",sum);
+  return 0;
+}
