@@ -1,0 +1,48 @@
+给定一个大小为 n 的数组。
+
+有一个大小为 k 的滑动窗口，它从数组的最左边移动到最右边。
+
+你只能在窗口中看到 k 个数字。
+
+每次滑动窗口向右移动一个位置。
+
+
+
+
+
+
+#include <stdio.h>
+int arr[1005];
+int main()
+{
+    int n,k;
+    scanf("%d%d",&n,&k);
+    for(int a=0;a<n;++a)
+      scanf("%d",&arr[a]);
+    int right=k;
+    int left=0;
+    while(right<=n)
+    {
+        int min=9999;
+        for(int a=left;a<right;++a)
+          if(min>arr[a])
+            min=arr[a];
+        printf("%d ",min);
+        ++left;
+        ++right;
+    }    
+    printf("\n");
+    right=k;
+    left=0;
+    while(right<=n)
+    {
+        int max=-9999;
+        for(int a=left;a<right;++a)
+          if(max<arr[a])
+            max=arr[a];
+        printf("%d ",max);
+        ++left;
+        ++right;
+    }    
+    return 0;
+}
