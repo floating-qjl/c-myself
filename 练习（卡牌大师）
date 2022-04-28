@@ -1,0 +1,47 @@
+现在有nn张卡牌， 每张卡牌上都有一个分数， 小红和小明将使用这些卡牌玩游戏。
+
+在这个游戏中，小红和小明交替拿一张牌。 小红先拿
+
+当两个玩家拿完所有牌时，游戏结束，每个玩家的分数是他/她所拿的牌上写的数字的总和。
+
+两个玩家都必须采取最优策略来最大化他们的分数。
+
+请输出最后小红的分数减去小明的分数得到的值。
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int arr[105];
+int test(const void*e1,const void*e2)
+{
+    return *(int*)e1-*(int*)e2;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int a=0;a<n;++a)
+      scanf("%d",&arr[a]);
+    qsort(arr,n,4,test);
+    int sum1=0;
+    int sum2=0;
+    int flag=1;
+    for(int a=n-1;a>=0;--a)
+    {
+        if(flag)
+        {
+            sum1+=arr[a];
+            flag=0;
+        }
+        else
+        {
+            sum2+=arr[a];
+            flag=1;
+        }
+    }
+    printf("%d",sum1-sum2);
+    return 0;
+}
