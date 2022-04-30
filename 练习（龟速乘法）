@@ -1,0 +1,22 @@
+求 a 乘 b 对 p 取模的值。
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    long long a,b,p;
+    scanf("%lld%lld%lld",&a,&b,&p);
+    long long sum=0;
+    while(b)
+    {
+        if(b&1)
+          sum=(sum+a)%p;
+        a=a%p+a%p;
+        b>>=1;
+    }
+    printf("%lld",sum);
+    return 0;
+}
