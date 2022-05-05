@@ -1,0 +1,82 @@
+设有n个人围坐在圆桌周围，现从某个位置m(1≤m≤n)上的人开始报数，报数到k的人就站出来。下一个人，
+即原来的第k+1位置上的人又从1开始报数，再报数到k的人站出来。依此重复下去，直到全部的人都站出来为止。
+试设计一个程序求出出列序列。
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+typedef struct _stu
+{
+    int num;
+    struct _stu* next;
+}Stu;
+
+void Init(Stu** queue)
+{
+    *queue = (Stu*)malloc(sizeof(Stu));
+    (*queue)->num = 1;
+    (*queue)->next = NULL;;
+}
+
+void create(int n,Stu** queue)
+{
+    Stu* pre = *queue;
+    for (int a = 2;a <= n;++a)
+    {
+        Stu* tmp = (Stu*)malloc(sizeof(Stu));
+        tmp->num = a;
+        tmp->next = pre->next;
+        pre->next = tmp;
+        pre = pre->next;
+    }
+    pre->next = (*queue);
+}
+
+void test(int n, int m, int k, Stu** queue)
+{
+    Stu* pre = *queue;
+    Stu* left = NULL;;
+    for (int a = 1;a < m;++a)
+        pre = pre->next;
+    while (n > 0 && pre)
+    {
+        if (k == 1)
+        {
+            left = pre;
+            for (int a = 1;a < n;++a)
+                left = left->next;
+            pre = left;
+        }
+        else
+            for (int a = 1;a < k - 1;++a)
+                pre = pre->next;
+        Stu* rubbish = pre->next;
+        pre->next = pre->next->next;
+        printf("%d ", rubbish->num);
+        if (rubbish != NULL)
+            free(rubbish);
+        pre = pre->next;
+        --n;
+    }
+
+}
+int main()
+{
+    Stu* queue;
+    int n, m, k;
+    printf("请依次输入n，m，k：");
+    scanf("%d%d%d", &n, &m, &k);
+    if (n > 0 && m > 0 && k > 0)
+    {
+        Init(&queue);
+        create(n, &queue);
+        test(n, m, k, &queue);
+    }
+    else
+        printf("\n输入不符条件，错误！\n");
+    return 0;
+}
