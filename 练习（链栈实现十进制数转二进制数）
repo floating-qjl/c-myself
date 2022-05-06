@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct node 
+{
+	char data;
+	struct node* next;
+}Stack;
+
+void Init(Stack** ls)
+{
+	*ls = NULL;
+}
+
+int empty(Stack* ls)
+{
+	if (ls == NULL)
+		return 1;
+	return 0;
+}
+
+int push(Stack** ls, int x)
+{
+	Stack* p = (Stack*)malloc(sizeof(Stack));
+	p->data = x;
+	p->next = *ls;
+	*ls = p;
+	return 1;
+}
+
+char pop(Stack** ls)
+{
+	if (*ls == NULL)
+		return 0;
+	Stack* p = *ls;
+	char x = (*ls)->data;
+	(*ls) = (*ls)->next;
+	free(p);
+	return x;
+}
+
+void destroy(Stack** ls)
+{
+	if (*ls == NULL)
+		return;
+	Stack* pre = (*ls)->next, * p = *ls;
+	while (p != NULL)
+	{
+		free(p);
+		p = pre;
+		pre = pre->next;
+	}
+	free(p);
+}
+
+void convert(int num, char* b)
+{
+	Stack* ls;
+	Init(&ls);
+	if (num == 0)
+	{
+		b[0] = '0';
+		return;
+	}
+
+	while (num != 0)
+	{
+		push(&ls, num % 2 + '0');
+		num /= 2;
+	}
+
+	for (int i = 0;!empty(ls);++i)
+	{
+		b[i] = pop(&ls);
+	}
+	destroy(&ls);
+	ls = NULL;
+}
+
+int main()
+{
+	char b[20] = "\0";
+	int num;
+	printf("请输入一个十进制正整数：");
+	scanf("%d", &num);
+	convert(num, b);
+	printf("其对应的二进制数为：%s\n", b);
+	return 0;
+}
