@@ -1,0 +1,84 @@
+设有n个整数(3≤n≤100)，将这些整数拼接起来，可以形成一个最大的整数。
+例如：n=3，三个整数分别为21 7 34， 拼接后最大的整数为： 73421
+再比如：n=3，三个整数分别是1 10 110，拼接后最大的整数是：111010
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+int arr[105];
+
+int sort(int a, int b)
+{
+    int t1 = a, t2 = b;
+    int len1 = 0, len2 = 0;
+    while (t1)
+    {
+        ++len1;
+        t1 /= 10;
+    }
+    while (t2)
+    {
+        ++len2;
+        t2 /= 10;
+    }
+    t1 = len1;
+    t2 = len2;
+    while (len1 && len2)
+    {
+        if (((int)(a / pow(10, len1 - 1))) % 10 < ((int)(b / pow(10, len2 - 1))) % 10)
+            return 0;
+        else if ((int)(a / pow(10, len1 - 1)) % 10 > (int)(b / pow(10, len2 - 1)) % 10)
+            return 1;
+        len1--;
+        len2--;
+    }
+    while (len1)
+    {
+        if ((int)(a / pow(10, len1 - 1)) % 10 < (int)(a / pow(10, t1 - 1)) % 10)
+            return 0;
+        else if ((int)(a / pow(10, len1 - 1)) % 10 > (int)(a / pow(10, t1 - 1)) % 10)
+            return 1;
+        len1--;
+        t1--;
+    }
+    while (len2)
+    {
+        if ((int)(b / pow(10, len2 - 1)) % 10 < (int)(b / pow(10, t2 - 1)) % 10)
+            return 1;
+        else if ((int)(b / pow(10, len2 - 1)) % 10 > (int)(b / pow(10, t2 - 1)) % 10)
+            return 0;
+        len2--;
+        t2--;
+    }
+}
+
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    for (int a = 0;a < n;++a)
+        scanf("%d", &arr[a]);
+    for (int a = 0;a < n - 1;++a)
+        for (int b = 0;b < n - a - 1;++b)
+        {
+            if (sort(arr[b], arr[b+1]))
+            {
+                int tmp = arr[b];
+                arr[b] = arr[b+1];
+                arr[b+1] = tmp;
+            }
+        }
+    for (int a = n - 1;a >= 0;--a)
+    {
+        printf("%d", arr[a]);
+    }
+    return 0;
+}
