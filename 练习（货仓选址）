@@ -1,0 +1,33 @@
+在一条数轴上有 N 家商店，它们的坐标分别为 A_1A 
+现在需要在数轴上建立一家货仓，每天清晨，从货仓到每家商店都要运送一车商品
+
+为了提高效率，求把货仓建在何处，可以使得货仓到每家商店的距离之和最小
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int arr[100005];
+int test(const void*e1,const void*e2)
+{
+    return *(int*)e1-*(int*)e2;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int a=0;a<n;++a)
+      scanf("%d",&arr[a]);
+    qsort(arr,n,4,test);
+    double ave=(n&1)?arr[(n-1)/2]:(arr[(n-1)/2]+arr[(n-1)/2+1])/2;
+    double sum=0;
+    for(int a=0;a<n;++a)
+      sum+=abs((double)arr[a]-ave);
+    printf("%.0lf",sum);
+    return 0;
+}
