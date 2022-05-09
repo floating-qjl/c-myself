@@ -1,0 +1,41 @@
+输入中将包含一个 N×N 的整数数组。
+
+第一行只输入一个整数 N，表示方形二维数组的大小。
+
+从第二行开始，输入由空格和换行符隔开的 N^2N 
+2
+  个整数，它们即为二维数组中的 N^2N 
+2
+  个元素，输入顺序从二维数组的第一行开始向下逐行输入，同一行数据从左向右逐个输入。
+
+数组中的数字会保持在 [−127,127] 的范围内。
+
+
+
+
+
+
+
+#include <stdio.h>
+#define MAX(a,b) a>b?a:b
+int a[102][102], S[102][102];
+
+int main(){
+    int n;
+    scanf("%d",&n);
+    for(int i=1; i<=n;i++)
+		for(int j=1; j<=n; j++)
+			scanf("%d",&a[i][j]), S[i][j] = a[i][j] + S[i-1][j] + S[i][j-1] - S[i-1][j-1];
+    
+    int ans = -2e9;
+    for(int i=1; i<=n; i++){
+        for(int j=i; j<=n; j++){
+            for(int s=1; s<=n; s++){
+                for(int t=s; t<=n; t++){
+                    ans = MAX(ans, S[j][t] + S[i-1][s-1] - S[i-1][t] - S[j][s-1]);
+                }
+            }
+        }
+    }
+    printf("%d",ans);
+}
