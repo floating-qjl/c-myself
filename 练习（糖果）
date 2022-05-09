@@ -1,0 +1,30 @@
+第一行包含两个整数 N 和 K。
+
+以下 N 行每行 1 个整数，表示糖果公司该件产品中包含的糖果数目，不超过 1000000。
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+#define MAX(a,b) a>b?a:b
+int arr[105];
+int dp[105][105];
+int main()
+{
+    int n, k;
+    scanf("%d%d", &n, &k);
+    for (int a = 1;a <=n;++a)
+        scanf("%d", &arr[a]);
+    memset(dp,-63,sizeof(dp));
+    dp[0][0]=0;
+    for (int a = 1;a <= n;++a)
+        for (int b = 0;b < k;++b)
+        {
+            dp[a][b] = MAX(dp[a - 1][b], dp[a - 1][((b - arr[a])%k+k)%k] + arr[a]);
+        }
+    printf("%d", dp[n][0]);
+    return 0;
+}
