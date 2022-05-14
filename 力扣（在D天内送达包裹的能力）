@@ -1,0 +1,54 @@
+传送带上的包裹必须在 days 天内从一个港口运送到另一个港口。
+
+传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量（weights）的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。
+
+返回能在 days 天内将传送带上的所有包裹送达的船的最低运载能力。
+
+
+
+
+
+
+
+
+
+int contest(int *arr,int size,int speed)
+{
+    int sum=0;
+    int day=0;
+    int flag=1;
+    for(int a=0;a<size;++a)
+    {
+        if(arr[a] > speed)
+        {
+            flag=0;
+            break;
+        }
+        sum+=arr[a];
+        if(sum > speed)
+        {
+            sum=arr[a];
+            ++day;
+        }
+    }
+    if(flag)
+      return day+1;
+    return 9999999;
+}
+
+
+
+int shipWithinDays(int* weights, int weightsSize, int days)
+{
+    int left=1;
+    int right=500000;
+    while(left<=right)
+    {
+        int mid=left+(right-left)/2;
+        if(contest(weights,weightsSize,mid)>days)
+          left=mid+1;
+        else if(contest(weights,weightsSize,mid)<=days)
+          right=mid-1;
+    }
+    return left;
+}
