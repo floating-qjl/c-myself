@@ -1,0 +1,53 @@
+给定一个非负整数数组 nums 和一个整数 m ，你需要将这个数组分成 m 个非空的连续子数组。
+
+设计一个算法使得这 m 个子数组各自和的最大值最小。
+
+
+
+
+
+
+
+
+
+
+
+int contest(int* nums,int size, int mid)
+{
+    int count=0;
+    int sum=0;
+    int flag=1;
+    for(int a=0;a<size;++a)
+    {
+        if(nums[a]>mid)
+        {
+            flag=0;
+            break;
+        }
+        sum+=nums[a];
+        if(sum > mid)
+        {
+            sum=nums[a];
+            ++count;
+        }
+    }
+    if(flag)
+      return count+1;
+    else 
+      return 9999999999;
+}
+
+int splitArray(int* nums, int numsSize, int m)
+{
+    int left=0;
+    int right=5e7;
+    while(left<=right)
+    {
+        int mid=left+(right-left)/2;
+        if(contest(nums,numsSize,mid) <= m)
+          right=mid-1;
+        else if(contest(nums,numsSize,mid) > m)
+          left=mid+1;
+    }
+    return left;
+}
