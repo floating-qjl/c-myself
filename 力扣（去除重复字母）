@@ -1,0 +1,31 @@
+给你一个字符串 s ，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证 返回结果的字典序最小（要求不能打乱其他字符的相对位置）。
+
+
+
+
+
+import java.util.Stack;
+
+class Solution {
+    public String removeDuplicateLetters(String s) {
+        Stack<Character>stack = new Stack<>();
+        int []ch = new int[128];
+        boolean []arr = new boolean[128];
+        for(char c:s.toCharArray())
+            ++ch[c];
+        for(char c:s.toCharArray())
+        {
+            --ch[c];
+            if(arr[c]) continue;
+
+            while(!stack.isEmpty() && ch[stack.peek()] != 0 && stack.peek() > c )
+                arr[stack.pop()] = false;
+            stack.push(c);
+            arr[c] = true;
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty())
+          sb.append(stack.pop());
+        return sb.reverse().toString();
+    }
+}
