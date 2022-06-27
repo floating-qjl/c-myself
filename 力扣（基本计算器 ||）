@@ -1,0 +1,80 @@
+给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。
+
+整数除法仅保留整数部分。
+
+你可以假设给定的表达式总是有效的。所有中间结果将在 [-231, 231 - 1] 的范围内。
+
+注意：不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/basic-calculator-ii
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+
+
+
+
+
+
+
+
+
+import static java.lang.Character.isDigit;
+class Solution {
+    int i;
+    Stack<Integer>stack = new Stack<>();
+
+    public int calculate(String s) {
+        int num = 0;
+        char index = '+';
+        int count = 0;
+        for (; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(isDigit(c))
+              num = num*10 + (c - '0');
+            if(c == '(')
+            {
+                ++i;
+                num = calculate(s);
+            }
+            if((!isDigit(c) && c!=' ' )|| i == s.length() - 1){
+                switch(index){
+                    case '+':
+                      ++count;
+                      stack.push(num);
+                      break;
+                    case '-':
+                      ++count;
+                      stack.push(-num);
+                      break;
+                    case '*':
+                      ++count;
+                      num = num * stack.pop();
+                      stack.push(num);
+                      break;
+                    case '/':
+                      ++count;
+                      num = stack.pop() / num;
+                      stack.push(num);
+                      break;
+                }
+                index = c;
+                num = 0;
+            }
+            if(c==')')
+              return total(count);
+        }
+        return total(count);
+    }
+    public int total(int count)
+    {
+        int total = 0;
+        int i = 0;
+        while(!stack.isEmpty() && i < count){
+            total += stack.pop();
+            ++i;
+        }
+        return total;
+    }
+}
