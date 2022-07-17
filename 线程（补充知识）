@@ -1,0 +1,124 @@
+
+
+定时器
+        定时器是一种控制任务延时调用，或者周期调用的技术。
+        作用:闹钟、定时邮件发送。
+
+定时器的实现方式
+        方式一:Timer
+        方式二: scheduledExecutorService
+
+
+Timer定时器:
+  构造器：
+public Timer()           创建Timer定时器对象；
+
+  方法：
+public void schedule(TimerTask task， long delay,long period)        开启一个定时器，按照计划处理TimerTask任务
+
+
+Timer定时器的特点和存在的问题
+        1、Timer是单线程，处理多个任务按照顺序执行，存在延时与设置定时器的时间有出入。
+        2、可能因为其中的某个任务的异常使Timer线程死掉，从而影响后续任务执行。
+
+
+代码：
+        Timer timer = new Timer();//定时器本身就是一个单线程。
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+            System.out.println(Thread.currentThread().getName() +"执行一次o~~~");
+            }
+        },delay: 3000,period: 2000);
+        //等待三秒执行第一次，后面再次执行每次隔两秒
+
+
+
+
+
+
+
+scheduledExecutorService定时器：
+        scheduledExecutorservice是jdk1.5中引入了并发包，目的是为了弥补Timer的缺陷, ScheduledExecutorService内部为线程池。
+
+
+Excutor方法：
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize)          得到线程池对象；
+
+ScheduledExecutorService的方法
+public scheduledFuture<?> scheduleAtFixedRate(Runnable command，long initialDelay，long period，TimeUnit unit)  周期调度方法
+
+
+scheduledExecutorService的优点：
+        基于线程池，某个任务的执行情况不会影响其他定时任务的执行。
+
+代码：
+        ScheduledExecutorService pool = Executors.newScheduledThreadPool( corePoolSize: 3);
+        pool.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run(){
+                System.out.println(Thread.currentThread().getName()+"执行输出:AAA" + new Date());
+            }
+        },initialDelay: 0,period: 2,TimeUnit.SECONDS);//任务、初始时间、间隔时间、时间单位
+
+
+
+
+并发与并行
+        正在运行的程序（软件）就是一个独立的进程，线程是属于进程的，多个线程其实是并发与并行同时进行的。
+
+并发的理解:
+        CPU同时处理线程的数量有限。
+        CPU会轮询为系统的每个线程服务，由于CPU切换的速度很快，给我们的感觉这些线程在同时执行，这就是并发。
+
+简单说说并发和并行的含义
+        并发:CPU分时轮询的执行线程。
+        并行:同一个时刻同时在执行。
+
+
+
+
+
+线程的状态:
+        线程的状态:也就是线程从生到死的过程，以及中间经历的各种状态及状态转换。
+        理解线程的状态有利于提升并发编程的理解能力。
+
+Java线程的状态:
+        Java总共定义了6种状态
+        6种状态都定义在Thread类的内部枚举类中。
+
+状态：
+public class Thread{
+    public enum State {
+        NEW,        //新建
+        RUNNABLE,  //可运行
+        BLOCKED,   //未获得锁对象，锁阻塞
+        WAITING,   //获得锁对象调用 wait()方法
+        TIMED_WAITING,  //sleep、wait方法，sleep醒来后继续运行，wait被唤醒或时间到之后重新获得锁，继续运行
+        TERMINATED; //执行完毕、出现异常，被终止
+    }
+     ...
+}
+}
+        NEW(新建)                  线程刚被创建，但是并未启动。
+        
+        Runnable(可运行)           线程已经调用了start()等待CPU调度
+        
+        Blocked(锁阻塞)            线程在执行的时候未竞争到锁对象，则该线程进入Blocked状态;。
+       
+        waiting(无限等待)          一个线程进入Waiting状态，另一个线程调用notify或者notifyAll方法才能够唤醒
+        
+        Timed Waiting(计时等待)
+        同waiting状态，有几个方法有超时参数，调用他们将进入Timed waiting状态。
+        带有一个线程进入Waiting状态，另一个线程调用notify或者notifyAll方法才能够唤醒
+        
+        Teminated(被终止)          因为run方法正常退出而死亡，或者因为没有捕获的异常终止了run方法而死亡。
+
+
+
+
+
+
+
+
+
