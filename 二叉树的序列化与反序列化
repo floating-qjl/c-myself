@@ -1,0 +1,47 @@
+
+import java.util.LinkedList;
+
+
+public class Codec {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        StringArray(root,sb);
+        return sb.toString();
+    }
+
+    private TreeNode StringArray(TreeNode root,StringBuilder sb){
+        if(root == null){
+            sb.append("#").append(",");
+            return null;
+        }
+        sb.append(root.val).append(",");
+        StringArray(root.left,sb);
+        StringArray(root.right,sb);
+        return root;
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        LinkedList list = new LinkedList();
+        for(String c : data.split(",")){
+            list.addLast(c);
+        }
+        return TreeCreate(list);
+    }
+
+    private TreeNode TreeCreate(LinkedList list){
+        if(list.isEmpty())
+            return null;
+        if(list.getFirst().equals("#")){
+            list.removeFirst();
+            return null;
+        }
+        TreeNode node = new TreeNode(Integer.parseInt((String)list.removeFirst()));
+        node.left = TreeCreate(list);
+        node.right = TreeCreate(list);
+        return node;
+    }
+
+}
