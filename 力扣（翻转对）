@@ -1,0 +1,61 @@
+给定一个数组 nums ，如果 i < j 且 nums[i] > 2*nums[j] 我们就将 (i, j) 称作一个重要翻转对。
+
+你需要返回给定数组中的重要翻转对的数量。
+
+
+
+
+
+class Solution {
+    private int[] temp;
+    int count;
+    public int reversePairs(int[] nums) {
+        temp = new int[nums.length];
+
+        sort(nums,0,nums.length-1);
+
+        return count;
+    }
+
+    private void sort(int[] nums,int left,int right){
+        if(left == right){
+            return;
+        }
+
+        int mid = left + (right - left) / 2;
+
+        sort(nums,left,mid);
+        sort(nums,mid + 1,right);
+
+        merge(nums,left,mid,right);
+    }
+
+    private void merge(int[] nums,int left,int mid,int right){
+        for(int a = left;a <= right;++a){
+            temp[a] = nums[a];
+        }
+
+        int end = mid + 1;
+        for(int a = left;a <= mid;++a){
+            while(end <= right && (long)temp[a] > (long)2 * temp[end]){
+                ++end;
+            }
+            count += end - mid -1;
+        }
+
+        int i = left;
+        int j = mid + 1;
+
+        for(int a = left;a <= right;++a){
+            if(i == mid + 1){
+                nums[a] = temp[j++];
+            }else if(j == right + 1){
+                nums[a] = temp[i++];
+            }else if(temp[i] > temp[j]){
+                nums[a] = temp[j++];
+            }else{
+                nums[a] = temp[i++];
+            }
+        }
+    }
+}
