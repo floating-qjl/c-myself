@@ -1,0 +1,56 @@
+class Solution {
+    private int count;
+    private long[] temp;
+    public int countRangeSum(int[] nums, int lower, int upper) {
+        long[] arr = new long[nums.length + 1];
+        temp = new long[nums.length + 1];
+        for(int a = 0;a < nums.length;++a){
+            arr[a + 1] = (long)nums[a] + arr[a];
+        }
+        sort(arr,0,arr.length - 1,lower,upper);
+        return count;
+    }
+
+    private void sort(long[] arr,int left,int right,int lower,int upper){
+        if(left == right)
+            return;
+        int mid = left + (right - left) / 2;
+        sort(arr,left,mid,lower,upper);
+        sort(arr,mid + 1,right,lower,upper);
+
+        merge(arr,left,mid,right,lower,upper);
+    }
+
+    private void merge(long[] arr,int left,int mid,int right,int lower,int upper){
+        for(int a = left;a <= right;++a){
+            temp[a] = arr[a];
+        }
+
+        int start = mid + 1;
+        int end = mid + 1;
+        for(int a = left;a <= mid;++a){
+            while(start <= right && arr[start] - arr[a] < (long)lower){
+                ++start;
+            }
+            while(end <= right && arr[end] - arr[a] <= (long)upper){
+                ++end;
+            }
+            count += end - start;
+        }
+
+        int i = left;
+        int j = mid + 1;
+        for(int a = left;a <= right;++a){
+            if(i == mid +1){
+                arr[a] = temp[j++];
+            }else if(j == right + 1){
+                arr[a] = temp[i++];
+            }else if(temp[i] > temp[j]){
+                arr[a] = temp[j++];
+            }else{
+                arr[a] = temp[i++];
+            }
+        }
+
+    }
+}
