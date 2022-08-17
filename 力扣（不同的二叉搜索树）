@@ -1,0 +1,32 @@
+给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。
+
+ 
+ 
+ class Solution {
+    private int[][] size;
+    public int numTrees(int n) {
+        size = new int[n + 1][n + 1];
+        return charge(1,n);
+    }
+    private int charge(int left,int right){
+        if(left >= right)
+            return 1;
+
+        if(size[left][right] != 0){
+            return size[left][right];
+        }
+
+        int res = 0;
+        for(int a = left;a <= right;++a){
+
+            int b = charge(left,a - 1);
+            int c = charge(a + 1,right);
+
+            res += b * c;
+        }
+
+        size[left][right] = res;
+
+        return res;
+    }
+}
