@@ -1,0 +1,58 @@
+给你一棵以 root 为根的 二叉树 ，请你返回 任意 二叉搜索子树的最大键值和。
+
+二叉搜索树的定义如下：
+
+任意节点的左子树中的键值都 小于 此节点的键值。
+任意节点的右子树中的键值都 大于 此节点的键值。
+任意节点的左子树和右子树都是二叉搜索树。
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+
+
+class Solution {
+    int count;
+    public int maxSumBST(TreeNode root) {
+        charge(root);
+        return count;
+    }
+
+    private int[] charge(TreeNode root){
+        if(root == null){
+            return new int[]{1,99999,-99999,0};
+        }
+        int[] left = charge(root.left);
+        int[] right = charge(root.right);
+
+        int[] num = new int[4];
+        if(left[0] == 1 && right[0] == 1 && root.val > left[2] && root.val < right[1]){
+            num[0] = 1;
+            num[1] = Math.min(left[1],root.val);
+            num[2] = Math.max(right[2],root.val);
+            num[3] = left[3] + right[3] + root.val;
+            count = Math.max(count,num[3]);
+
+        }else{
+            num[0] = 0;
+        }
+
+        return num;
+    }
+}
