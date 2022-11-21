@@ -1,0 +1,39 @@
+给定 n 个整数 ，求它们两两相乘再相加的和。
+
+
+
+import java.util.Scanner;
+// 1:无需package
+// 2: 类名必须Main, 不可修改
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        //在此输入您的代码...
+        int n = scan.nextInt();
+        long[] dix = new long[n];
+        long[] arr = new long[n];
+
+        long ans = 0;
+        for(int a = 0;a < n; ++a){
+          dix[a] = scan.nextLong();
+          ans += dix[a];
+          arr[a] = ans;
+        }
+
+        long sum = 0;
+
+        for(int a = 0;a < n-1;++a){
+          sum += dix[a] * (arr[n-1] - arr[a]);
+        }
+
+        System.out.println(sum);
+        scan.close();
+    }
+}
+
+
+
+
+
+
