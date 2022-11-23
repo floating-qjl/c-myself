@@ -1,0 +1,40 @@
+小明决定从下周一开始努力刷题准备蓝桥杯竞赛。他计划周一至周五每天 做 aa 道题目, 周六和周日每天做 bb 道题目。
+请你帮小明计算, 按照计划他将在 第几天实现做题数大于等于 nn 题?
+
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+// 1:无需package
+// 2: 类名必须Main, 不可修改
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        //在此输入您的代码...
+        long a = scan.nextLong();
+        long b = scan.nextLong();
+        long n = scan.nextLong();
+        long sum = 5*a + 2*b;
+
+        long c = n / sum;
+        long d = n % sum;
+        long count = 0;
+        
+        while(d > 0){
+          ++count;
+          if(count <= 5){
+            d -= a;
+          }else{
+            d -= b;
+          }
+        }  
+        System.out.println(count + 7*c);
+        scan.close();
+    }
+}
