@@ -1,0 +1,33 @@
+将 2022 拆分成 10 个互不相同的正整数之和, 总共有多少种拆分方法?
+
+注意交换顺序视为同一种方法, 例如 2022=1000+10222022=1000+1022 和 2022=2022= 1022+10001022+1000 就视为同一种方法。
+
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+// 1:无需package
+// 2: 类名必须Main, 不可修改
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        //在此输入您的代码...
+        long arr[][] = new long[11][2025];
+        arr[0][0] = 1;
+        for(int i = 1;i <= 2022; ++i){
+          for(int j = 10;j >= 1; --j){
+            for(int k = i; k <= 2022; ++k){
+              arr[j][k] += arr[j-1][k-i];
+            }
+          }
+        }
+        System.out.println(arr[10][2022]);
+        scan.close();
+    }
+}
