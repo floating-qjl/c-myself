@@ -1,0 +1,35 @@
+在 ISO 国际标准中定义了 A0 纸张的大小为 1189mm \times× 841mm, 将 A0 纸 沿长边对折后为 A1 纸, 
+大小为 841mm \times× 594mm, 在对折的过程中长度直接取 下整 (实际裁剪时可能有损耗)。将 A1 纸沿长边对折后为 A2 纸, 依此类推。
+
+输入纸张的名称, 请输出纸张的大小。
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+// 1:无需package
+// 2: 类名必须Main, 不可修改
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        //在此输入您的代码...
+        String arr = scan.next();
+        char[] cin = arr.toCharArray();
+        int a = (int)cin[1] - 48;
+        double b = 1189;
+        double c = 841;
+        for(int d = 0;d < a; ++d){
+          double e = Math.min(b,c);
+          b = Math.floor(Math.max(b,c)/2.0);
+          c = e;
+        }
+        System.out.println((long)Math.max(b,c));
+        System.out.println((long)Math.min(b,c));
+        scan.close();
+    }
+}
